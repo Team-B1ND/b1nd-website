@@ -13,10 +13,10 @@ export const HeaderContainer = styled.header`
   z-index: 5;
 `;
 
-export const HeaderBox = styled.div`
+export const HeaderBox = styled.div<{ menuVisible: boolean }>`
   width: 80%;
   display: flex;
-  justify-content:space-between;
+  justify-content:${(props)=> (props.menuVisible ? "flex-end" : "space-between")};
   align-items: center;
 
   
@@ -35,16 +35,17 @@ export const MobileMenuIcon = styled.div`
 `;
 
 export const Nav = styled.nav<{ menuVisible: boolean }>`
-  display: flex;
+  display: ${(props)=> (props.menuVisible ? "flex" : "none")};
   gap: 20px;
+  flex-direction: ${(props)=> (props.menuVisible ? "column" : "row")};
   @media (max-width: 767px) {
     position: absolute;
     top: 60px;
     left: 0;
     width: 100%;
-    background-color: #fff;
-    display: ${(props) => (props.menuVisible ? "block" : "none")};
-    padding: 10px;
+    height: ${(props)=> (props.menuVisible ? "100vh" : "")};
+    background-color: ${({theme})=> theme.backgroundNormal};
+    padding: ${(props) => (props.menuVisible ? "30px": "10px")};;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
@@ -53,11 +54,15 @@ export const Nav = styled.nav<{ menuVisible: boolean }>`
   }
 `;
 
-export const NavItem = styled.a`
+export const NavItem = styled.a<{ menuVisible: boolean }>`
   cursor: pointer;
   color: ${({theme})=>theme.labelNormal};
   text-decoration: none;
   ${DodamTypography.Body2.Medium};
+  @media (max-width: 767px) {
+    ${DodamTypography.Heading1.Bold};
+
+  }
 
   &:hover {
     color:${({theme})=>theme.primaryNormal};
