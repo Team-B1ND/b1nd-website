@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const LayoutContainer = styled.div`
     height: 100vh;
     display: flex;
+    flex-direction: column;
     user-select: none;
     margin: 0;
     background-color: ${({theme})=> theme.backgroundNoraml};
@@ -12,9 +13,9 @@ export const Layout = styled.div`
     position: relative;
     top: 74px; 
     display: flex;
-    padding: 100px 20px;
+    flex-direction: column;
+    padding: 100px 20px 10px 20px;
     width: 100%;
-    height: 100%;
     justify-content: center;
     align-items: center;
 
