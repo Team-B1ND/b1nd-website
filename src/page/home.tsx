@@ -1,10 +1,19 @@
-import { Headline, HeadlineContent, HeadlineFlexBox, IntroductionBox,Title, HistoryBox, HeaderDate, HistoryItemBox, HistoryText } from "./style";
+import { 
+    Headline, 
+    HeadlineContent, 
+    HeadlineFlexBox, 
+    IntroductionBox,
+    Title, 
+    HistoryBox, 
+    HeaderDate, 
+    HistoryItemBox, 
+    HistoryText
+ } from "./style";
 import { DodamDivider } from "@b1nd/dds-web";
 import {DodamAppLogo, GithubLogo, FigmaLogo} from "../assets";
 import { HISTORY_ITME } from "../constants/history.constants";
 
 const Home = () => {
-
 
     return(
         <IntroductionBox>
@@ -65,7 +74,7 @@ const Home = () => {
                         {item.year !== "" ?  <>{item.year}</> : <div style={{width:"120px"}}>{item.year}</div>}
                     </HeaderDate>
                     <HistoryText>
-                        <span>{item.month}</span>
+                        {item.month ==="" ? <span style={{display:"none"}}/> : <span>{item.month}</span>}
                         <span>{item.content}</span>
                     </HistoryText>
                 </HistoryItemBox>

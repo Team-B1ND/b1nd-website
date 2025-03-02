@@ -32,7 +32,7 @@ export const HISTORY_ITME = [
     {
         year:"",
         month:"",
-        content: "\"후배들을 위해 선배가 교육 프로그램 단디 실시\"",
+        content: "\"후배들을 위해 선배가\" 교육 프로그램 단디 실시",
     },
     {
         year:"",

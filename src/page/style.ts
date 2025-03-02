@@ -10,6 +10,7 @@ export const IntroductionBox = styled.main`
 export const Title = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 8px;
     h1{
         font-size: 60px !important;
         ${DodamTypography.Title1.Bold};
@@ -39,6 +40,9 @@ export const Headline = styled.div`
     
 `
 export const HeadlineContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     h1{
         font-size: 40px !important;
         ${DodamTypography.Title1.Bold};
@@ -55,6 +59,7 @@ export const HeadlineFlexBox = styled.div`
     flex-wrap: wrap;
     gap: 16px;
 `
+
 export const HistoryBox = styled.div`
 display: flex;
 flex-direction: column;
@@ -68,6 +73,7 @@ p{
     color: ${({theme})=>theme.labelNormal};
 
 }
+
 `
 export const HeaderDate = styled.div`
     display: flex;
@@ -96,7 +102,7 @@ export const HistoryItemBox = styled.div`
     gap: 36px;
    
     @media (max-width: 767px) {
-        gap: 32px;
+        gap: 8px;
     }
 `
 

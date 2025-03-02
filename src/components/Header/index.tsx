@@ -3,6 +3,7 @@ import { HeaderBox, HeaderContainer,MobileMenuIcon,  Nav, NavItem } from "./styl
 import { Close, Menu } from "@b1nd/dds-web";
 import {DodamLogo} from "../../assets";
 import { useLocation } from "react-router-dom";
+import { handleRouter } from "../../utils/useNavigation";
 
 
 const Header = () => {
@@ -13,9 +14,6 @@ const Header = () => {
     setMenuVisible((prevState) => !prevState);
   };
 
-  const handleRouter = (link:string)=>{
-    window.location.href = link;
-  }
 
   return (
     <HeaderContainer>

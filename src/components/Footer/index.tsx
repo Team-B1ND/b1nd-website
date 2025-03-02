@@ -1,14 +1,8 @@
 import { DodamDivider } from "@b1nd/dds-web";
 import { FooterContainer, FooterItem, TeamInfo } from "./style";
+import { handleRouter,handleLink } from "../../utils/useNavigation";
 
 const Footer = () => {
-    const handleRouter = (link:string)=>{
-        window.location.href = link;
-      }
-      const handleLink = (link: string) => {
-        window.open(link, "_blank");
-    };
-    
 
     return(
         <>
@@ -26,7 +20,6 @@ const Footer = () => {
             </FooterItem>
             <FooterItem>
                 <span onClick={()=>handleLink("https://dodam.b1nd.com")}>도담도담</span>
-                <span onClick={() => handleLink("https://store.naver.com")}>네이버 스토어</span>
                 <span onClick={() => handleLink("https://github.com/Team-B1ND")}>깃허브</span>
             </FooterItem>
         </FooterContainer>
