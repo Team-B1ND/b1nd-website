@@ -1,2 +1,3 @@
-plugins: hexo-generator-cname
-url: b1nd.com
+plugins:
+  - hexo-generator-cname
+url: https://b1nd.com
