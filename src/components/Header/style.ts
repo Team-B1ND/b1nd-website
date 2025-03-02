@@ -54,9 +54,12 @@ export const Nav = styled.nav<{ menuVisible: boolean }>`
   }
 `;
 
-export const NavItem = styled.a<{ menuVisible: boolean }>`
+export const NavItem = styled.a<{ 
+  menuVisible: boolean ;
+  $isAtv:boolean;
+  }>`
   cursor: pointer;
-  color: ${({theme})=>theme.labelNormal};
+  color: ${({theme,$isAtv})=>$isAtv ? theme.primaryNormal : theme.labelNormal};
   text-decoration: none;
   ${DodamTypography.Body2.Medium};
   @media (max-width: 767px) {

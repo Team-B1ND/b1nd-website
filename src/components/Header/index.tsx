@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import { HeaderBox, HeaderContainer,MobileMenuIcon,  Nav, NavItem } from "./style";
 import { Close, Menu } from "@b1nd/dds-web";
 import {DodamLogo} from "../../assets";
+import { useLocation } from "react-router-dom";
+
 
 const Header = () => {
   const [menuVisible, setMenuVisible] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setMenuVisible((prevState) => !prevState);
   };
+
+  const handleRouter = (link:string)=>{
+    window.location.href = link;
+  }
 
   return (
     <HeaderContainer>
@@ -21,9 +28,21 @@ const Header = () => {
 
         {/* 네비게이션 메뉴 */}
         <Nav menuVisible={menuVisible}>
-            <NavItem menuVisible={menuVisible}>팀소개</NavItem>
-            <NavItem menuVisible={menuVisible}>서비스</NavItem>
-            <NavItem menuVisible={menuVisible}>블로그</NavItem>
+            <NavItem 
+                menuVisible={menuVisible} 
+                $isAtv={location.pathname ==="/"} 
+                onClick={()=>handleRouter("/")}
+                >팀소개</NavItem>
+            <NavItem 
+                menuVisible={menuVisible}  
+                $isAtv={location.pathname ==="/service"}
+                onClick={()=>handleRouter("/service")}
+                >서비스</NavItem>
+            <NavItem 
+                menuVisible={menuVisible} 
+                $isAtv={location.pathname ==="/blog"}
+                onClick={()=>handleRouter("/blog")}
+                >블로그</NavItem>
         </Nav>
       </HeaderBox>
     </HeaderContainer>
