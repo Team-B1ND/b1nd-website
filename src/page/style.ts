@@ -4,8 +4,11 @@ import { DodamTypography } from "@b1nd/dds-web";
 export const IntroductionBox = styled.main`
     display: flex;
     flex-direction: column;
-    gap: 140px;
-    margin-bottom: 140px;
+    gap: 144px;
+    margin-bottom: 144px;
+    @media (max-width: 767px) {
+        gap: 108px;
+    }
 `
 export const Title = styled.div`
     display: flex;

@@ -19,7 +19,10 @@ export const Layout = styled.div`
     justify-content: center;
     align-items: center;
     background-color: ${({theme})=> theme.backgroundNormal};
-
+    @media (max-width: 767px) {
+        width: 100%;
+        padding:  72px 20px;
+    }
 `
 
 export const Box = styled.div`

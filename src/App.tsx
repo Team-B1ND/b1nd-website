@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import './App.css';
 import ThemeProviderContainer from './components/ThemeProviderContainer';
 import Routes from './router';
@@ -6,9 +6,9 @@ import Routes from './router';
 function App() {
   return (
     <ThemeProviderContainer>
-      <BrowserRouter>
-        <Routes/>
-      </BrowserRouter>
+        <HashRouter>
+          <Routes/>
+        </HashRouter>
     </ThemeProviderContainer>
   )
 }

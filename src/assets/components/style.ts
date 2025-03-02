@@ -3,7 +3,7 @@ export const StyledSvg = styled.svg<{ $svgStyle: Interpolation<object> }>`
   ${({ $svgStyle }) => $svgStyle}
 `;
 
-export const StyledPath = styled.path<{ $pathStyle: Interpolation<object> }>`
+export const StyledPath = styled.path<{$pathStyle: Interpolation<object> }>`
   fill: ${({ theme }) => theme.labelNormal };
   ${({ $pathStyle }) => $pathStyle}
 `;

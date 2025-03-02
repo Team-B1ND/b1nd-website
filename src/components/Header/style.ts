@@ -18,7 +18,10 @@ export const HeaderBox = styled.div<{ menuVisible: boolean }>`
   display: flex;
   justify-content:${(props)=> (props.menuVisible ? "flex-end" : "space-between")};
   align-items: center;
-
+  @media (max-width: 767px) {
+    width: 100%;
+    gap: 24px;
+  }
   
 `;
 
@@ -27,16 +30,12 @@ export const MobileMenuIcon = styled.div`
   cursor: pointer;
   @media (max-width: 767px) {
     display: block;
-    svg {
-      width: 30px;
-      height: 30px;
-    }
   }
 `;
 
 export const Nav = styled.nav<{ menuVisible: boolean }>`
   display: ${(props)=> (props.menuVisible ? "flex" : "none")};
-  gap: 20px;
+  gap: 12px;
   flex-direction: ${(props)=> (props.menuVisible ? "column" : "row")};
   @media (max-width: 767px) {
     position: absolute;
@@ -45,12 +44,13 @@ export const Nav = styled.nav<{ menuVisible: boolean }>`
     width: 100%;
     height: ${(props)=> (props.menuVisible ? "100vh" : "")};
     background-color: ${({theme})=> theme.backgroundNormal};
-    padding: ${(props) => (props.menuVisible ? "30px": "10px")};;
+    padding: ${(props) => (props.menuVisible ? "20px": "10px")};;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   @media (min-width: 768px) {
     display: flex;
+    gap: 16px;
   }
 `;
 
@@ -59,6 +59,7 @@ export const NavItem = styled.a<{
   $isAtv:boolean;
   }>`
   cursor: pointer;
+  padding: 8px 16px;
   color: ${({theme,$isAtv})=>$isAtv ? theme.primaryNormal : theme.labelNormal};
   text-decoration: none;
   ${DodamTypography.Body2.Medium};

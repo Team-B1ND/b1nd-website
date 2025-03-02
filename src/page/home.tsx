@@ -10,7 +10,7 @@ import {
     HistoryText
  } from "./style";
 import { DodamDivider } from "@b1nd/dds-web";
-import {DodamAppLogo, GithubLogo, FigmaLogo} from "../assets";
+import {DodamAppLogo, FigmaLogo, GithubLogo} from "../assets";
 import { HISTORY_ITME } from "../constants/history.constants";
 
 const Home = () => {
