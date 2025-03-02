@@ -1,11 +1,15 @@
 import { ServiceBox, ServiceEtc, ServiceImg, ServiceIntroductionBox, ServiceTitle, ServiceContent } from "./style";
 import { Title } from "../style";
 import { DodamDivider } from "@b1nd/dds-web";
-import arrow from "../../assets/components/arrow_up.svg";
 import { DodamAppLogo,ArrowUp } from "../../assets";
 import Dt from "../../assets/f92b5275-92ec-4ce0-b196-c71dc36239c3_service_01.avif.png";
+import { useWindowSize } from "../../utils/useWindowSize";
 
 const Service = () => {
+    const width = useWindowSize(); 
+    console.log(width);
+    
+
     return(
         <ServiceBox>
         <Title>
@@ -21,8 +25,11 @@ const Service = () => {
         <DodamDivider type="Small"/>
         <ServiceIntroductionBox>
             <ServiceTitle>
-                <DodamAppLogo/>
-                <h1>도담도담  <img src={arrow} alt="" /></h1>
+                {width <= 767  ? "" : <DodamAppLogo/>} 
+                <h1>
+                    도담도담  
+                    <ArrowUp/>
+                    </h1>
                 <span>학교 생활을 더 편리하게 관리할 수 있도록 다양한 기능을 제공하는 스마트 스쿨 플랫폼입니다.</span>
             </ServiceTitle>
             <ServiceImg src={Dt}/>

@@ -2,7 +2,7 @@ import React from "react";
 import { IconProps } from "./type";
 import { StyledPath, StyledSvg } from "./style";
 
-export const ArrowUp = ({ size = 34, color = "labelNormal", $svgStyle, $pathStyle }: IconProps) => {
+export const ArrowUp = ({ size = 34, $svgStyle, $pathStyle }: IconProps) => {
   return (
     <StyledSvg
       width={size}

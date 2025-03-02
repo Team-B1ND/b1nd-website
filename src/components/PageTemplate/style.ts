@@ -6,7 +6,7 @@ export const LayoutContainer = styled.div`
     flex-direction: column;
     user-select: none;
     margin: 0;
-    background-color: ${({theme})=> theme.backgroundNoraml};
+    background-color: ${({theme})=> theme.backgroundNormal};
 `
 
 export const Layout = styled.div`
@@ -18,6 +18,7 @@ export const Layout = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
+    background-color: ${({theme})=> theme.backgroundNormal};
 
 `
 

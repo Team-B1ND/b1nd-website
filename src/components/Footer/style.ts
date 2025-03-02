@@ -26,7 +26,8 @@ export const TeamInfo = styled.div`
         color: ${({theme})=>theme.labelAssistive};
     }
     @media (max-width: 767px) {
-     width: 50%;
+     width: 100%;
+     flex-direction: column;
     }
     
 `

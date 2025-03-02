@@ -6,9 +6,11 @@ type Props = {
 };
 
 const ThemeProviderContainer = ({ children }: Props) => {
+  const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
   
   return (
-    <DodamThemeProvider theme="LIGHT">
+    <DodamThemeProvider theme={isDarkMode ? "DARK" :"LIGHT"}>
       <DodamGlobalStyles />
       {children}
     </DodamThemeProvider>

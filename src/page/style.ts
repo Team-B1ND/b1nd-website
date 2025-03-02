@@ -19,6 +19,13 @@ export const Title = styled.div`
         ${DodamTypography.Heading1.Medium};
         color: ${({theme})=>theme.labelAssistive};
     }
+    @media (max-width: 767px) {
+        gap: 10px;
+        h1{
+            font-size: 36px !important;
+            ${DodamTypography.Title1.Bold};
+        }
+    }
 `
 
 export const Headline = styled.div`
@@ -58,6 +65,8 @@ p{
     align-items: center;
     font-size: 40px !important;
     ${DodamTypography.Title1.Bold};
+    color: ${({theme})=>theme.labelNormal};
+
 }
 `
 export const HeaderDate = styled.div`
