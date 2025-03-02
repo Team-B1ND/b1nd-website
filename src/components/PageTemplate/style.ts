@@ -30,4 +30,7 @@ export const Box = styled.div`
     &::-webkit-scrollbar {
     display: none;
   }
+  @media (max-width: 767px) {
+        width: 100%;
+    }
 `

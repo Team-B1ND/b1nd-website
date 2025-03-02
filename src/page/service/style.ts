@@ -50,6 +50,7 @@ export const ServiceImg = styled.img`
     object-fit: cover;
     @media (max-width: 767px) {
         width: 100%;
+        ${DodamShape.Large};
     }
 `
 export const ServiceEtc = styled.div`
@@ -66,6 +67,8 @@ export const ServiceEtc = styled.div`
 `
 
 export const ServiceContent = styled.div`
+    display: flex;
+    flex-direction: column;
     width: 30%;
     
   h1{
@@ -83,5 +86,9 @@ export const ServiceContent = styled.div`
     }
     @media (max-width: 767px) {
     width: 100%;
+    gap: 12px;
+    span{
+        width: 100%;
+    }
     }
 `
