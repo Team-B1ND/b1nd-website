@@ -9,16 +9,18 @@ import Home from './page/home'
 import Service from './page/service/service'
 import Blog from './page/blog/blog'
 
-const Routes = () => {
+const Rotuer = () => {
   return (
-    <Switch>
-      <Route element={<PageTemplate />}>
-        <Route path='/adsf' element={<Home />} />
-        <Route path='/asfasdf' element={<Service />} />
-        <Route path='/' element={<Blog />} />
-      </Route>
-    </Switch>
+    <BrowserRouter>
+      <Switch>
+        <Route path='/' element={<PageTemplate />}>
+          <Route index element={<Home />} />
+          <Route path='/service' element={<Service />} />
+          <Route path='/blog' element={<Blog />} />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   )
 }
 
-export default Routes
+export default Rotuer
