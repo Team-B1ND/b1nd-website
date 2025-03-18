@@ -1,8 +1,7 @@
 import {
   Route,
   Routes as Switch,
-  Navigate,
-  BrowserRouter,
+  HashRouter,
 } from 'react-router-dom'
 import PageTemplate from './components/PageTemplate'
 import Home from './page/home'
@@ -11,7 +10,7 @@ import Blog from './page/blog/blog'
 
 const Rotuer = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route path='/' element={<PageTemplate />}>
           <Route index element={<Home />} />
@@ -19,7 +18,7 @@ const Rotuer = () => {
           <Route path='/blog' element={<Blog />} />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
