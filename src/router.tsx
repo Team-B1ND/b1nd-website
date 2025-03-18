@@ -10,7 +10,7 @@ import Blog from './page/blog/blog'
 
 const Rotuer = () => {
   return (
-    <HashRouter>
+    <HashRouter basename='/#'>
       <Switch>
         <Route path='/' element={<PageTemplate />}>
           <Route index element={<Home />} />

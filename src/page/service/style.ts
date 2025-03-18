@@ -79,7 +79,7 @@ export const ServiceContent = styled.div`
         cursor: pointer;
     }
     span{
-        width: 100px;
+        min-width: 100px;
         height: 100%;
         ${DodamTypography.Body1.Medium};
         color: ${({theme})=>theme.labelAssistive};
