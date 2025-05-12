@@ -44,8 +44,6 @@ export const BlogContentContainer = styled.div`
   gap: 32px;
   width: 80%;
   height: 100%;
-
-  overflow: auto;
 `
 
 export const BlogContentBox = styled.div`
@@ -58,8 +56,10 @@ export const BlogContentBox = styled.div`
   ${DodamTypography.Body1.Medium};
   color: ${({ theme }) => theme.labelNormal};
 
-  overflow-y: scroll;
-
+  /* overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  } */
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 각 행마다 2개씩 표시 */
   grid-gap: 88px; /* 각 아이템 간의 간격 */
