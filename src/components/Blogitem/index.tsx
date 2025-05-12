@@ -1,5 +1,4 @@
-import React from 'react'
-import * as S from './style'
+import * as S from './style';
 
 interface BlogItemProps {
   title: string

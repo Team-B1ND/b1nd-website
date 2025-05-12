@@ -56,13 +56,10 @@ export const BlogContentBox = styled.div`
   ${DodamTypography.Body1.Medium};
   color: ${({ theme }) => theme.labelNormal};
 
-  /* overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  } */
+
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 각 행마다 2개씩 표시 */
-  grid-gap: 88px; /* 각 아이템 간의 간격 */
-  justify-items: center; /* 아이템을 중앙 정렬 */
-  align-items: stretch; /* 아이템의 높이를 동일하게 맞춤 */
+  grid-template-columns: repeat(2, 1fr); 
+  grid-gap: 88px; 
+  justify-items: center; 
+  align-items: stretch; 
 `

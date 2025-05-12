@@ -5,10 +5,11 @@ import {
   BlogSerach,
   BlogSerachIcon,
   BlogSerachInput,
-} from './style'
-import { Title } from '../style'
-import { Magnifyingglass } from '@b1nd/dds-web'
-import BlogItem from './Blogitem'
+} from './style';
+import { Title } from '../style';
+import { Magnifyingglass } from '@b1nd/dds-web';
+import BlogItem from '../../components/Blogitem/index';
+import WriteButton from '../../components/WriteButton';
 
 const Blog = () => {
   const blogItems = [
@@ -21,7 +22,7 @@ const Blog = () => {
   ]
 
   return (
-    <BlogBox>
+    <BlogBox >
       <Title>
         <h1>
           함께 배우고 나누고
@@ -39,7 +40,6 @@ const Blog = () => {
           width: '100%',
           display: 'flex',
           justifyContent: 'center',
-          overflow: 'auto',
         }}
       >
         <BlogContentContainer>
@@ -56,6 +56,7 @@ const Blog = () => {
           </BlogContentBox>
         </BlogContentContainer>
       </div>
+      <WriteButton/>
     </BlogBox>
   )
 }
