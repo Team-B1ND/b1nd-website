@@ -10,11 +10,9 @@ class AuthRepositoryImpl {
     return data;
   }
 
-  public async refresh(
-    accessToken: string
-  ): Promise<{ data: { accessToken: string } }> {
+  public async refresh({ refreshToken }: { refreshToken: string }): Promise<{ accessToken: string }> {
     const { data } = await axios.post(`${SERVER}/auth/refresh`, {
-      accessToken,
+      refreshToken,
     });
     return data;
   }
