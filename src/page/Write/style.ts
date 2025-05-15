@@ -3,16 +3,24 @@ import styled from "styled-components";
 
 export const WriteBox = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   margin-bottom: 88px;
   min-height: 579px;
   background-color: ${({theme})=>theme.backgroundNormal};
   
 
-  @media (max-width: 767px) {
-    flex-direction: column;
-  }
+ 
 `;
+
+export const WriteInputBox = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+`
 
 export const Left = styled.div`
   flex: 1;
@@ -29,12 +37,6 @@ export const Left = styled.div`
     border-bottom: 1px solid ${({theme})=>theme.labelAssistive};
   }
 `;
-export const LeftHeader = styled.header`
-    width: 100%;
-    display: flex;
-    position: fixed;
-
-`
 
 export const Right = styled.div`
   flex: 1;

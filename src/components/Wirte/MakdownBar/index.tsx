@@ -8,9 +8,11 @@ const Toolbar = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-height: 48px;
   flex-wrap: wrap;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.labelNormal};
+  
 `;
 
 const Button = styled.button`
@@ -27,7 +29,7 @@ const Button = styled.button`
 
 const Line = styled.div`
   width: 2px;
-  height: 90%;
+  height: 50%;
   background-color: ${({ theme }) => theme.labelNormal};
 `;
 
