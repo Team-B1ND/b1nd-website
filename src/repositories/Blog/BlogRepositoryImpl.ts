@@ -10,9 +10,18 @@ class BlogRepositoryImpl {
     });
     return data.data;
   }
+  
+  public async getWaitingBlogs(page: number, size: number): Promise<BlogResponse> {
+    const { data } = await b1ndAxios.get("/post/list/pending", {
+      params: { page, size },
+    });
+    return data.data;
+  }
+
   public async writeBlog(blogData:BlogParam): Promise<void> {
      await b1ndAxios.post("/post", blogData);
   }
+
 
 }
 

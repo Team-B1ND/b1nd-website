@@ -17,6 +17,15 @@ export const useBlogsList = ({ page, size = 10 }: UseBlogsProps) => {
   });
 };
 
+export const useBlogWaitingList = ({page,size=10}:UseBlogsProps) => {
+    return useQuery<BlogResponse>({
+        queryKey: ["blogs/waiting", page, size],
+        queryFn: () => BlogRepository.getWaitingBlogs(page, size),
+        staleTime: 1000 * 60 * 10, 
+        cacheTime: 1000 * 60 * 5,
+        keepPreviousData: true, 
+    })
+}
 
 export const useBlogMutation = () => {
     const mutation = useMutation((blogData: BlogParam)=>
@@ -24,3 +33,4 @@ export const useBlogMutation = () => {
     )
     return mutation;
 }
+
