@@ -1,9 +1,9 @@
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import './App.css'
 import ThemeProviderContainer from './components/ThemeProviderContainer'
 import Routes from './router'
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -22,12 +22,19 @@ function App() {
       })
   );
 
+  useEffect(() => {
+    if (window.location.pathname === '/' && !window.location.hash) {
+      window.location.replace('/#/');
+    }
+  }, []);
+
+  
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProviderContainer>
-        <BrowserRouter>
+        <HashRouter>
           <Routes />
-        </BrowserRouter>
+        </HashRouter>
       </ThemeProviderContainer>
     </QueryClientProvider>
   )
