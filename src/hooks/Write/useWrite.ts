@@ -39,7 +39,8 @@ export const useWrite = () => {
         post_content: markdown,
       });
 
-      DodamDialog.alert("게시글이 성공적으로 출간되었습니다.");
+      
+      DodamDialog.alert("게시글이 성공적으로 출간되었습니다.","어드민에서 ");
       window.location.href = "/blog";
     } catch (err) {
       console.error(err);
