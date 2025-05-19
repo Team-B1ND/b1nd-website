@@ -1,0 +1,2 @@
+(self.webpackChunkb1nd_website=self.webpackChunkb1nd_website||[]).push([[6748],{6748:()=>{"undefined"!=typeof Prism&&"undefined"!=typeof document&&Prism.hooks.add("before-sanity-check",(function(e){if(e.code){var n=e.element.parentNode,s=/(?:^|\s)keep-initial-line-feed(?:\s|$)/;!n||"pre"!==n.nodeName.toLowerCase()||s.test(n.className)||s.test(e.element.className)||(e.code=e.code.replace(/^(?:\r?\n|\r)/,""))}}))}}]);
+//# sourceMappingURL=6748.558b036e.chunk.js.map

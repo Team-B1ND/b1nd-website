@@ -1,0 +1,2 @@
+(self.webpackChunkb1nd_website=self.webpackChunkb1nd_website||[]).push([[5512],{5512:()=>{"undefined"!=typeof Prism&&Prism.hooks.add("wrap",(function(e){"keyword"===e.type&&e.classes.push("keyword-"+e.content)}))}}]);
+//# sourceMappingURL=5512.64fe4f67.chunk.js.map
