@@ -1,5 +1,4 @@
 import {
-  HashRouter,
   Route,
   Routes as Switch,
 } from 'react-router-dom'
@@ -14,7 +13,6 @@ import Admin from './page/Admin/admin'
 const Rotuer = () => {
   return (
     <>
-    {/* <HashRouter> */}
       <Switch>
         <Route path='/' element={<PageTemplate />}>
           <Route index element={<Home />} />
@@ -24,8 +22,7 @@ const Rotuer = () => {
           <Route path='/admin' element={<Admin />}/>
         </Route>
         <Route path="/callback" element={<AuthLoadingPage />} />
-      </Switch>
-      {/* </HashRouter> */}
+      </Switch>      
       </>
   )
 }
