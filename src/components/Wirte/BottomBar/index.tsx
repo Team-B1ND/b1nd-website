@@ -18,7 +18,7 @@ const BottomBar = ({ onPublish, onExit, isLoading }: BottomBarProps) => {
                 width={112}
                 size="Large"
                 backgroundColorType="Primary"
-                
+                textTheme="staticWhite"
                 onClick={()=>onPublish}
             >
             {isLoading ? "출간 중..." : "출간하기"}

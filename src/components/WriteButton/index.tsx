@@ -6,7 +6,7 @@ const WriteButton = () => {
 
     return(
         <ButtonContainer onClick={() => (window.location.href = authURL)}>
-            <DodamFilledButton size="Medium" text="글 작성 하러가기"/>
+            <DodamFilledButton size="Medium" textTheme="staticWhite"  text="글 작성 하러가기"/>
         </ButtonContainer>
     )
 }
