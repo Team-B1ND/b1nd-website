@@ -1,16 +1,17 @@
+import { Blog } from '../../types/Blog/blog.type';
 import * as S from './style';
 
 interface BlogItemProps {
-  title: string
+  data:Blog
 }
 
-const BlogItem = ({ title }: BlogItemProps) => {
+const BlogItem = ({ data }: BlogItemProps) => {
   return (
     <S.StyledBlogItemWrap>
       <S.BlogItemImage />
       <S.BlogItemContext>
-        <span>{title}</span>
-        <p>{title}</p>
+        <span>{data.post_title}</span>
+        <p>{data.post_content}</p>
       </S.BlogItemContext>
     </S.StyledBlogItemWrap>
   )

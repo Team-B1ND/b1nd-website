@@ -7,19 +7,15 @@ import {
   BlogSerachInput,
 } from './style';
 import { Title } from '../style';
-import { Magnifyingglass } from '@b1nd/dds-web';
+import { DodamErrorBoundary, Magnifyingglass } from '@b1nd/dds-web';
 import BlogItem from '../../components/Blogitem/index';
 import WriteButton from '../../components/WriteButton';
+import { useState } from 'react';
+import { useBlogsList } from '../../queries/Blog/blog.query';
 
 const Blog = () => {
-  const blogItems = [
-    { id: 1, title: 'RAG7 기술을 활용한 도담단 AI 만들기' },
-    { id: 2, title: '디자인 시스템으로 100배 빨리기 UI 디자인하기' },
-    { id: 3, title: 'RAG7 기술을 활용한 도담단 AI 만들기' },
-    { id: 4, title: '디자인 시스템으로 100배 빨리기 UI 디자인하기' },
-    { id: 5, title: 'RAG7 기술을 활용한 도담단 AI 만들기' },
-    { id: 6, title: '디자인 시스템으로 100배 빨리기 UI 디자인하기' },
-  ]
+  const [page, setPage] = useState(1)
+  const { data, isLoading } = useBlogsList({ page })
 
   return (
     <BlogBox >
@@ -50,9 +46,17 @@ const Blog = () => {
             <BlogSerachInput placeholder='검색' />
           </BlogSerach>
           <BlogContentBox>
-            {blogItems.map((item, index) => (
-              <BlogItem key={index} title={item.title} />
-            ))}
+            <DodamErrorBoundary text="에러발생"  showButton={true}>
+              {isLoading ? (<div>로딩중..</div>):
+              (
+                <>
+                {data?.data.map((item, index) => (
+                <BlogItem key={index} data={item} />
+                  ))}
+                </>
+              )
+              }
+            </DodamErrorBoundary>
           </BlogContentBox>
         </BlogContentContainer>
       </div>
