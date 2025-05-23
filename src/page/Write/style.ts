@@ -62,6 +62,15 @@ export const Right = styled.div`
     font-family: 'Fira Code', 'Source Code Pro', monospace;
   }
 
+  a {
+    color: ${({ theme }) => theme.primaryNormal}; 
+    text-decoration: underline;
+
+    &:hover {
+      color: ${({ theme }) => theme.primaryAlternative || theme.primaryAssistive};
+    }
+  }
+
   /* 인라인 코드 스타일 */
   p > code {
     background-color: ${({ theme }) => theme.fillNormal};
