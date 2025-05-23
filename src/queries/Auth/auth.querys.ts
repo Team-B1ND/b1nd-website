@@ -1,5 +1,5 @@
 import AuthRepositoryImpl from "../../repositories/Auth/AuthRepositoryImpl";
-import { LoginParam } from "../../repositories/Auth/AuthRepository";
+import { LoginParam } from "../../repositories/Auth/AuthParmas";
 import { useMutation } from "react-query";
 
 export const usePostLoginMutation = () => {

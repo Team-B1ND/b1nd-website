@@ -1,6 +1,6 @@
 import axios from "axios";
 import { TokenResponse } from "../../types/Token/token.types";
-import { LoginParam } from "./AuthRepository";
+import { LoginParam } from "./AuthParmas";
 
 const SERVER = process.env.REACT_APP_SERVER_URL!;
 
