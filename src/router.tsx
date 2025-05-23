@@ -2,7 +2,7 @@ import {
   Route,
   Routes as Switch,
 } from 'react-router-dom'
-import PageTemplate from './components/PageTemplate'
+import PageTemplate from './components/Common/PageTemplate'
 import Home from './page/home'
 import ServicePage from './page/service/service'
 import BlogPage from './page/blog/blog'

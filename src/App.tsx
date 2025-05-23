@@ -1,6 +1,6 @@
 import { HashRouter } from 'react-router-dom'
 import './App.css'
-import ThemeProviderContainer from './components/ThemeProviderContainer'
+import ThemeProviderContainer from './components/Common/ThemeProviderContainer'
 import Routes from './router'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useEffect, useState } from 'react';

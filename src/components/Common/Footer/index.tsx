@@ -1,6 +1,6 @@
 import { DodamDivider } from "@b1nd/dds-web";
 import { FooterBox, FooterContainer, FooterItem, FooterLinkBox, TeamInfo } from "./style";
-import { handleRouter,handleLink } from "../../utils/useNavigation";
+import { handleRouter,handleLink } from "../../../utils/useNavigation";
 
 const Footer = () => {
 

@@ -7,9 +7,9 @@ import {
   NavItem,
 } from './style'
 import { Close, Menu } from '@b1nd/dds-web'
-import { DodamLogo } from '../../assets'
+import { DodamLogo } from '../../../assets'
 import { useLocation } from 'react-router-dom'
-import { handleRouter } from '../../utils/useNavigation'
+import { handleRouter } from '../../../utils/useNavigation'
 
 const Header = () => {
   const [menuVisible, setMenuVisible] = useState(false)
