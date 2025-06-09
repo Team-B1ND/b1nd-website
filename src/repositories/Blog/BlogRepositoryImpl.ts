@@ -1,4 +1,4 @@
-import { BlogParam, BlogResponse } from "../../types/Blog/blog.type";
+import { Blog, BlogParam, BlogResponse } from "../../types/Blog/blog.type";
 import { b1ndAxios } from "../../libs/Axios/customAxios";
 
 
@@ -18,10 +18,18 @@ class BlogRepositoryImpl {
     return data.data;
   }
 
+  public async getBlogDetail(id: number): Promise<Blog> {
+    const { data } = await b1ndAxios.get(`/post/${id}`);
+    return data.data;
+  }
+
   public async writeBlog(blogData:BlogParam): Promise<void> {
      await b1ndAxios.post("/post", blogData);
   }
 
+  public async approveBlog(id: number): Promise<void> {
+   await b1ndAxios.post(`/post/approve/${id}`);
+  }
 
 }
 
