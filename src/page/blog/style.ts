@@ -62,4 +62,38 @@ export const BlogContentBox = styled.div`
   grid-gap: 88px; 
   justify-items: center; 
   align-items: stretch; 
+  position: relative; 
+`
+export const PagiNation = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  button{
+    padding: 10px 20px;
+    border: none;
+    background-color: ${({ theme }) => theme.fillNormal};
+    color: ${({ theme }) => theme.labelNormal};   
+    ${DodamTypography.Body1.Bold}
+    ${DodamShape.Medium}
+  }
+  span{
+    color: ${({ theme }) => theme.labelNormal};   
+    ${DodamTypography.Body1.Medium}
+  }
+`
+
+export const ToastText = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${({ theme }) => theme.labelNormal};
+  ${DodamTypography.Title2.Bold}
 `
