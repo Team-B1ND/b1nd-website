@@ -27,27 +27,34 @@ export const useWrite = () => {
   };
 
   const publish = async () => {
+    
+    
     if (!title.trim() || !markdown.trim()) {
       DodamDialog.alert("제목과 내용을 모두 작성해주세요.");
       return;
     }
 
-    try {
+    
       setIsLoading(true);
       await postBlogMutation.mutateAsync({
         post_title: title,
         post_content: markdown,
-      });
+      },
+    {
+      onError: (err) => {
+        setIsLoading(false);
+        console.error(err);
+        DodamDialog.alert("출간 중 오류가 발생했습니다.");
+      },
+      onSuccess: () => {
+        DodamDialog.alert("게시글이 성공적으로 출간되었습니다.","어드민에서 ");
+        window.location.href = "/blog";
+        setIsLoading(false);
+      }
+    });
 
-      
-      DodamDialog.alert("게시글이 성공적으로 출간되었습니다.","어드민에서 ");
-      window.location.href = "#/blog";
-    } catch (err) {
-      console.error(err);
-      DodamDialog.alert("출간 중 오류가 발생했습니다.");
-    } finally {
-      setIsLoading(false);
-    }
+    setIsLoading(false);
+    
   };
 
   const handleExit = async () => {

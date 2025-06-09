@@ -7,11 +7,11 @@ import File from "../../../assets/components/file";
 const Toolbar = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   min-height: 48px;
   flex-wrap: wrap;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.labelNormal};
+  color: ${({ theme }) => theme.labelAlternative};
   
 `;
 
@@ -23,7 +23,7 @@ const Button = styled.button`
     align-items: center;
     justify-content: center;
   cursor: pointer;
-  color: ${({ theme }) => theme.labelNormal};
+  color: ${({ theme }) => theme.labelAlternative};
   ${DodamTypography.Heading1.Medium}
 `;
 
@@ -53,14 +53,14 @@ const MarkdownToolbar = ({ onInsert }: Props) => {
       <Button onClick={() => onInsert("**굵은텍스트**")}>B</Button>
       <Button onClick={() => onInsert("_기울임텍스트_")}>/</Button>
       <Button onClick={() => onInsert("~~취소선~~")}>
-        <StrikeThrough $svgStyle={{ textAlign: "center" }} />
+        <StrikeThrough color="labelAlternative" $svgStyle={{ textAlign: "center" }} />
       </Button>
       <Button onClick={() => onInsert("[파일명](파일경로)")}>
-        <File />
+        <File color="labelAlternative"/>
       </Button>
       <Button onClick={() => onInsert("> 인용문")}>❝</Button>
       <Button onClick={() => onInsert("![이미지 설명](이미지 링크)")}>
-        <Photo color="labelNormal" />
+        <Photo color="labelAlternative" />
       </Button>
       <Button onClick={insertCodeBlock}>{"</>"}</Button>
     </Toolbar>

@@ -19,7 +19,7 @@ const BottomBar = ({ onPublish, onExit, isLoading }: BottomBarProps) => {
                 size="Large"
                 backgroundColorType="Primary"
                 textTheme="staticWhite"
-                onClick={()=>onPublish}
+                onClick={onPublish}
             >
             {isLoading ? "출간 중..." : "출간하기"}
             </DodamFilledButton>
