@@ -1,9 +1,10 @@
-import { HashRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
 import ThemeProviderContainer from './components/Common/ThemeProviderContainer'
 import Routes from './router'
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { B1ndToastContainer } from '@b1nd/b1nd-toastify';
 
 
 
@@ -21,20 +22,14 @@ function App() {
         },
       })
   );
-
-  useEffect(() => {
-    if (window.location.pathname === '/' && !window.location.hash) {
-      window.location.replace('/#/');
-    }
-  }, []);
-
   
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProviderContainer>
-        <HashRouter>
+      <B1ndToastContainer autoClose={1000} limit={1} />
+        <BrowserRouter>
           <Routes />
-        </HashRouter>
+        </BrowserRouter>
       </ThemeProviderContainer>
     </QueryClientProvider>
   )

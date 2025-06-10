@@ -1,4 +1,5 @@
 import {
+  HashRouter,
   Route,
   Routes as Switch,
 } from 'react-router-dom'
@@ -9,20 +10,24 @@ import BlogPage from './page/blog/blog'
 import AuthLoadingPage from './page/AuthLoading/AuthLoadingPage'
 import WritePage from './page/Write/write'
 import Admin from './page/Admin/admin'
+import BlogDetailPage from './page/BlogDetail/page'
 
 const Rotuer = () => {
   return (
     <>
-      <Switch>
+      
+        <Switch>
         <Route path='/' element={<PageTemplate />}>
           <Route index element={<Home />} />
           <Route path='/service' element={<ServicePage />} />
           <Route path='/blog' element={<BlogPage />} />
+          <Route path='/blog/:id' element={<BlogDetailPage />} />
           <Route path='/write' element={<WritePage />} />
           <Route path='/admin' element={<Admin />}/>
         </Route>
         <Route path="/callback" element={<AuthLoadingPage />} />
-      </Switch>      
+        </Switch>
+      
       </>
   )
 }
