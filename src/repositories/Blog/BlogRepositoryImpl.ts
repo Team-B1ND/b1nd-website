@@ -28,7 +28,11 @@ class BlogRepositoryImpl {
   }
 
   public async approveBlog(id: number): Promise<void> {
-   await b1ndAxios.post(`/post/approve/${id}`);
+   await b1ndAxios.patch(`/post/approve/${id}`);
+  }
+
+  public async rejectBlog(id: number): Promise<void> {
+    await b1ndAxios.patch(`/post/reject/${id}`);
   }
 
 }

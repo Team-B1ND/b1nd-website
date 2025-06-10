@@ -62,7 +62,7 @@ export const useWrite = () => {
       "작성 중인 내용이 모두 사라지고 다시 로그인해야합니다. 정말 나가시겠습니까? "
     );
     if (await confirm) {
-      window.location.href = "#/blog";
+      window.location.href = "/blog";
     }
   };
 

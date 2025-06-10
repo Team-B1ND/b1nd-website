@@ -49,3 +49,10 @@ export const useApproveBlogMutation = () => {
     );
     return mutation;
 }
+
+export const useRejectBlogMutation = () => {
+    const mutation = useMutation((postId: number) =>
+        BlogRepository.rejectBlog(postId)
+    );
+    return mutation;
+}

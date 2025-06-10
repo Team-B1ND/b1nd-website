@@ -29,6 +29,7 @@ const Blog = () => {
     if (page < totalPages) setPage(prev => prev + 1);
   };
 
+
   return (
     <BlogBox>
       <Title>
