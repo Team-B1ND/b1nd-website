@@ -37,8 +37,8 @@ export const useBlogDetail = (id: number) => {
 };
 
 export const useBlogMutation = () => {
-    const mutation = useMutation((blogData: BlogParam)=>
-        BlogRepository.writeBlog(blogData)
+    const mutation = useMutation((blogParam: BlogParam)=>
+        BlogRepository.writeBlog(blogParam)
     )
     return mutation;
 }

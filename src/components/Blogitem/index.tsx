@@ -18,7 +18,7 @@ const BlogItem = ({ data }: BlogItemProps) => {
       <S.BlogItemImage />
       <S.BlogItemContext>
         <span>{data.post_title}</span>
-        <p>{data.post_content}</p>
+        <p>{data.post_summary}</p>
       </S.BlogItemContext>
     </S.StyledBlogItemWrap>
   )

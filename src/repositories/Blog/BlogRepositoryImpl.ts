@@ -23,8 +23,8 @@ class BlogRepositoryImpl {
     return data.data;
   }
 
-  public async writeBlog(blogData:BlogParam): Promise<void> {
-     await b1ndAxios.post("/post", blogData);
+  public async writeBlog(blogParam:BlogParam): Promise<void> {
+     await b1ndAxios.post("/post", blogParam);
   }
 
   public async approveBlog(id: number): Promise<void> {
