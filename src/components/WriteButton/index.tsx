@@ -25,7 +25,7 @@ const WriteButton = () => {
       });
       Token.setToken(ACCESS_TOKEN_KEY, newAccessToken);
 
-      window.location.href = authURL;
+      window.location.href = "write";
     } catch (error) {
       Token.clearToken();
       window.location.href = authURL;

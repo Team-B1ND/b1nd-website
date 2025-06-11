@@ -34,7 +34,6 @@ export const Left = styled.div`
   @media (max-width: 767px) {
     width: 100%;
     border-right: none;
-    border-bottom: 1px solid ${({theme})=>theme.labelAssistive};
   }
 `;
 
@@ -43,6 +42,11 @@ export const Right = styled.div`
   padding: 2rem;
   overflow-y: auto;
   color: ${({ theme }) => theme.labelNormal};
+
+
+  @media (max-width: 767px) {
+     display: none;
+    }
 
   h1 {
     margin-bottom: 10px;

@@ -13,6 +13,10 @@ const Toolbar = styled.div`
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.labelAlternative};
   
+  @media (max-width: 767px) {
+    gap: 1.2rem;
+  }
+
 `;
 
 const Button = styled.button`
@@ -29,7 +33,7 @@ const Button = styled.button`
 
 const Line = styled.div`
   width: 2px;
-  height: 50%;
+  height: 20px;
   background-color: ${({ theme }) => theme.labelNormal};
 `;
 
