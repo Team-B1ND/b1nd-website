@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Blog } from '../../types/Blog/blog.type';
 import * as S from './style';
@@ -15,7 +16,7 @@ const BlogItem = ({ data }: BlogItemProps) => {
 
   return (
     <S.StyledBlogItemWrap onClick={handleClick}>
-      <S.BlogItemImage />
+      <S.BlogItemImage src={data.poster_image ?? ''} />
       <S.BlogItemContext>
         <span>{data.post_title}</span>
         <p>{data.post_summary}</p>

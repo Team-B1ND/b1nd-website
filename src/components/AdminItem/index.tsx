@@ -42,12 +42,12 @@ const AdminItem = ({ data }: { data: Blog }) => {
   return (
     <AdminItemBox>
       <ImgBox>
-        {/* <img src={data? || ""} alt="썸네일" /> */}
+        <img src={data?.poster_image || ""} alt="썸네일" />
       </ImgBox>
       <ContentBox onAbort={handleClick}>
         <TitleBox>
           <span>{data?.post_title}</span>
-          <span>{data?.post_content || "내용 요약이 없습니다"}</span>
+          <span>{data?.post_summary || "내용 요약이 없습니다"}</span>
         </TitleBox>
         <ButtonBox>
           <DodamFilledButton

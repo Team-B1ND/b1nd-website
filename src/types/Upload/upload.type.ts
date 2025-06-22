@@ -1,3 +1,8 @@
 export interface UploadParam{
-       poster_image?: File | null;
+       file: File;
 }
+
+export interface UploadResponse {
+       url: string;
+       filename: string;
+     }

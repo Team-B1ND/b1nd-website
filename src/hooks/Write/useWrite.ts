@@ -6,7 +6,7 @@ import { useUploadMutation } from "../../queries/Upload/upload.query";
 export const useWrite = () => {
   const postBlogMutation = useBlogMutation();
   const uploadMutation = useUploadMutation();
-
+  const [isUploading, setIsUploading] = useState(false);
   const [title, setTitle] = useState("");
   const [markdown, setMarkdown] = useState("");
   const [isPosterPhase, setIsPosterPhase] = useState(false);
@@ -26,6 +26,33 @@ export const useWrite = () => {
       textarea.focus();
       textarea.selectionStart = textarea.selectionEnd = start + text.length;
     }, 0);
+  };
+
+  const handleUploadImageAndInsertMarkdown = async (file: File) => {
+    const uploadingMarkdown = `![Uploading ${file.name}…]()`;
+
+    setIsUploading(true);
+    handleInsert(uploadingMarkdown);
+
+    try {
+      const response = await uploadMutation.mutateAsync({ file });
+      console.log(response);
+
+      const realUrl = `http://localhost:8080${response.url}`; // URL 조정
+      const completedMarkdown = `![${response.filename}](${realUrl})`;
+
+      // 업로드 마크다운을 실제 마크다운으로 교체
+      setMarkdown((prev) =>
+        prev.includes(uploadingMarkdown)
+          ? prev.replace(uploadingMarkdown, completedMarkdown)
+          : prev + "\n" + completedMarkdown
+      );
+    } catch (error) {
+      setMarkdown((prev) => prev.replace(uploadingMarkdown, ""));
+      DodamDialog.alert("이미지 업로드에 실패했습니다.");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -84,39 +111,21 @@ export const useWrite = () => {
     setIsPosterPhase(true);
   };
 
-  
-  const uploadImage = async (image: File | null): Promise<string | null> => {
-    if (!image) return null;
-
-    const formData = new FormData();
-    formData.append("poster_image", image);
-
-    try {
-      await uploadMutation.mutateAsync(formData as any);
-      
-      const response = uploadMutation.data as any;
-      return response?.url || null;
-    } catch (error) {
-      DodamDialog.alert("이미지 업로드 중 오류가 발생했습니다.");
-      return null;
-    }
-  };
-
-  const handleSubmitPoster = async (summary: string, image: File | null) => {
+  const handleSubmitPoster = async (summary: string, image: string | null) => {
     if (!summary.trim()) {
       DodamDialog.alert("요약글을 작성해주세요.");
       return;
     }
-
-    const imageUrl = await uploadImage(image);
-
+  
+    let imageUrl: string = image ? image : ""; 
+  
     const blogParam = {
       post_title: title,
       post_content: markdown,
       post_summary: summary,
       poster_image: imageUrl,
     };
-
+  
     await postBlogMutation.mutateAsync(blogParam, {
       onError: (err) => {
         console.error(err);
@@ -124,10 +133,11 @@ export const useWrite = () => {
       },
       onSuccess: () => {
         DodamDialog.alert("게시글이 성공적으로 출간되었습니다.", "어드민에서 승인 후 반영됩니다.");
-        window.location.href = "/blog";
+        // window.location.href = "/blog";
       },
     });
   };
+  
 
   const handleExit = async () => {
     const confirm = DodamDialog.confirm("작성 중인 내용이 모두 사라지고 다시 로그인해야합니다. 정말 나가시겠습니까?");
@@ -155,12 +165,14 @@ export const useWrite = () => {
     setMarkdown,
     handleInsert,
     handleKeyDown,
-    publish: handleSubmitPoster, 
+    publish: handleSubmitPoster,
     handleExit,
     handleOpenPoster,
     isPosterPhase,
     handleSubmitPoster,
     setIsPosterPhase,
     isLoading: postBlogMutation.isLoading || uploadMutation.isLoading,
+    handleUploadImageAndInsertMarkdown,
+    isUploading,
   };
 };

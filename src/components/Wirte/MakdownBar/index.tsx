@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { StrikeThrough } from "../../../assets/components/strikethrough";
 import { Photo } from "@b1nd/dds-web";
 import File from "../../../assets/components/file";
+import { useRef } from "react";
+import { useWrite } from "../../../hooks/Write/useWrite";
 
 const Toolbar = styled.div`
   display: flex;
@@ -12,20 +14,18 @@ const Toolbar = styled.div`
   flex-wrap: wrap;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.labelAlternative};
-  
+
   @media (max-width: 767px) {
     gap: 1.2rem;
   }
-
 `;
 
 const Button = styled.button`
-    
   border: none;
   background: none;
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   color: ${({ theme }) => theme.labelAlternative};
   ${DodamTypography.Heading1.Medium}
@@ -47,6 +47,25 @@ const MarkdownToolbar = ({ onInsert }: Props) => {
     onInsert(template);
   };
 
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { handleUploadImageAndInsertMarkdown } = useWrite();
+
+  const onImageSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      await handleUploadImageAndInsertMarkdown(file);
+    }
+  };
+
+  const onFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const fileMarkdown = `[${file.name}](파일 경로)`;
+      onInsert(fileMarkdown);
+    }
+  };
+
   return (
     <Toolbar>
       <Button onClick={() => onInsert("# ")}>H1</Button>
@@ -59,13 +78,33 @@ const MarkdownToolbar = ({ onInsert }: Props) => {
       <Button onClick={() => onInsert("~~취소선~~")}>
         <StrikeThrough color="labelAlternative" $svgStyle={{ textAlign: "center" }} />
       </Button>
-      <Button onClick={() => onInsert("[파일명](파일경로)")}>
-        <File color="labelAlternative"/>
+
+      
+      <Button onClick={() => fileInputRef.current?.click()}>
+        <File color="labelAlternative" />
       </Button>
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={onFileSelect}
+        style={{ display: "none" }}
+        accept="*"
+      />
+
       <Button onClick={() => onInsert("> 인용문")}>❝</Button>
-      <Button onClick={() => onInsert("![이미지 설명](이미지 링크)")}>
+
+      
+      <Button onClick={() => imageInputRef.current?.click()}>
         <Photo color="labelAlternative" />
       </Button>
+      <input
+        type="file"
+        ref={imageInputRef}
+        onChange={onImageSelect}
+        style={{ display: "none" }}
+        accept="image/*"
+      />
+
       <Button onClick={insertCodeBlock}>{"</>"}</Button>
     </Toolbar>
   );

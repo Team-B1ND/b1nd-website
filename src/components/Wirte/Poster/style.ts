@@ -30,7 +30,8 @@ export const PosterImage = styled.div`
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 200px;
+    background-size: cover;
+    min-height: 200px;
     background-color: ${({ theme }) => theme.fillNormal};
     ${DodamShape.Medium};
     input{

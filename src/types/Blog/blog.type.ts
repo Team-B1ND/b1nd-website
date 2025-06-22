@@ -4,7 +4,7 @@ export interface BlogParam {
     post_title: string;
     post_content: string;
     post_summary: string;
-
+    poster_image?: string;
 }
  
 export interface Blog {

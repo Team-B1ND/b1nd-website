@@ -10,6 +10,10 @@ export const AdminItemBox = styled.div`
 `
 
 export const ImgBox = styled.div`
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
     width: 425px;
     height: 100%;
     ${DodamShape.Large}
