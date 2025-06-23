@@ -1,6 +1,5 @@
 import {
     BlogBox,
-    BlogContentBox,
     BlogContentContainer,
     PagiNation,
     ToastText,
@@ -10,6 +9,7 @@ import {
   import AdminItem from '../../components/AdminItem';
   import { useState } from 'react';
   import { useBlogWaitingList } from '../../queries/Blog/blog.query';
+  import {BlogContentBox} from './style';
   
   const Admin = () => {
     const [page, setPage] = useState(1);
@@ -48,7 +48,7 @@ import {
                   </>
                 )}
               </DodamErrorBoundary>
-            </BlogContentBox>
+              </BlogContentBox>
   
             <PagiNation>
               <button disabled={page === 1} onClick={handlePrev}>

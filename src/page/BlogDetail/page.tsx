@@ -39,12 +39,27 @@ const BlogDetailPage = () => {
         </S.BlogTitleDetail>
         </S.BlogTitle>
         <S.BlogContent>
-          <ReactMarkdown
+        <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypePrism]}
+            components={{
+              img: ({ node, ...props }) => (
+                <img
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                    display: "block",
+                    margin: "0 auto"
+                  }}
+                  alt={props.alt || "이미지"}
+                  {...props}
+                />
+              ),
+            }}
           >
             {data.post_content || "내용이 없습니다."}
           </ReactMarkdown>
+
         </S.BlogContent>
         <S.BoxHeader>
             <DodamFilledButton

@@ -36,15 +36,17 @@ const AdminItem = ({ data }: { data: Blog }) => {
     } 
 
     const handleClick = () => {
+      console.log("클릭됨", data.post_id);
+      
         navigate(`/blog/${data.post_id}`); 
       };
 
   return (
     <AdminItemBox>
-      <ImgBox>
+      <ImgBox onClick={handleClick}>
         <img src={data?.poster_image || ""} alt="썸네일" />
       </ImgBox>
-      <ContentBox onAbort={handleClick}>
+      <ContentBox >
         <TitleBox>
           <span>{data?.post_title}</span>
           <span>{data?.post_summary || "내용 요약이 없습니다"}</span>

@@ -17,6 +17,7 @@ export const ImgBox = styled.div`
     width: 425px;
     height: 100%;
     ${DodamShape.Large}
+    cursor: pointer;
 `
 
 export const ContentBox = styled.div`

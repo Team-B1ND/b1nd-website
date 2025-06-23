@@ -24,6 +24,7 @@ const WritePage = () => {
     isPosterPhase,
     setIsPosterPhase,
     handleSubmitPoster,
+    handleUploadImageAndInsertMarkdown
   } = useWrite();
 
   
@@ -43,7 +44,10 @@ const WritePage = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <MarkdownToolbar onInsert={handleInsert} />
+            <MarkdownToolbar 
+              onInsert={handleInsert} 
+              onImageUpload={handleUploadImageAndInsertMarkdown} 
+            />
             <S.TextArea
                 id="markdown-input"
                 placeholder="당신의 개발 이야기를 담아주세요"

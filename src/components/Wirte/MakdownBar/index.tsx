@@ -4,7 +4,6 @@ import { StrikeThrough } from "../../../assets/components/strikethrough";
 import { Photo } from "@b1nd/dds-web";
 import File from "../../../assets/components/file";
 import { useRef } from "react";
-import { useWrite } from "../../../hooks/Write/useWrite";
 
 const Toolbar = styled.div`
   display: flex;
@@ -39,9 +38,10 @@ const Line = styled.div`
 
 interface Props {
   onInsert: (text: string) => void;
+  onImageUpload: (file: File) => Promise<void>;
 }
 
-const MarkdownToolbar = ({ onInsert }: Props) => {
+const MarkdownToolbar = ({ onInsert, onImageUpload }: Props) => {
   const insertCodeBlock = () => {
     const template = `\`\`\`language\n코드\n\`\`\``;
     onInsert(template);
@@ -49,12 +49,12 @@ const MarkdownToolbar = ({ onInsert }: Props) => {
 
   const imageInputRef = useRef<HTMLInputElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const { handleUploadImageAndInsertMarkdown } = useWrite();
+
 
   const onImageSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      await handleUploadImageAndInsertMarkdown(file);
+      await onImageUpload(file);
     }
   };
 

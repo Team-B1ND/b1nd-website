@@ -47,12 +47,12 @@ const Blog = () => {
 
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <BlogContentContainer>
-          <BlogSerach>
+          {/* <BlogSerach>
             <BlogSerachIcon>
               <Magnifyingglass color='labelAlternative' />
             </BlogSerachIcon>
             <BlogSerachInput placeholder='검색' />
-          </BlogSerach>
+          </BlogSerach> */}
 
           <BlogContentBox>
             <DodamErrorBoundary text="에러발생" showButton={true}>
