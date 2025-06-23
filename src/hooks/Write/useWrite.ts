@@ -130,7 +130,7 @@ export const useWrite = () => {
       poster_image: imageUrl,
     };
 
-    await postBlogMutation.mutateAsync(blogParam, {
+     postBlogMutation.mutate(blogParam, {
       onError: (err) => {
         console.error(err);
         DodamDialog.alert("출간 중 오류가 발생했습니다.");

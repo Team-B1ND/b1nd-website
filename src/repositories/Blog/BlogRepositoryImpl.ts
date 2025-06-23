@@ -24,7 +24,9 @@ class BlogRepositoryImpl {
   }
 
   public async writeBlog(blogParam:BlogParam): Promise<void> {
-     await b1ndAxios.post("/post", blogParam);
+    const res = await b1ndAxios.post("/post", blogParam);
+     if (res.status >= 400) throw new Error('Request failed');
+
   }
 
   public async approveBlog(id: number): Promise<void> {
