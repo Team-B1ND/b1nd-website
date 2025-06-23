@@ -13,8 +13,9 @@ const WriteButton = () => {
     const accessToken = Token.getToken(ACCESS_TOKEN_KEY);
     const refreshToken = Token.getToken(REFRESH_TOKEN_KEY);
 
-    // Access Token 없으면 바로 로그인 페이지로
-    if (!accessToken || !refreshToken) {
+    
+    if (!accessToken || !refreshToken || accessToken === undefined || refreshToken === undefined) {
+      alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
       window.location.href = authURL;
       return;
     }

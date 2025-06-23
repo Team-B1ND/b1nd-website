@@ -63,6 +63,11 @@ export const BlogContentBox = styled.div`
   justify-items: center; 
   align-items: stretch; 
   position: relative; 
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; 
+    grid-gap: 40px;             
+  }
 `
 export const PagiNation = styled.div`
   display: flex;
