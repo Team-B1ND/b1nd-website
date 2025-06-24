@@ -10,16 +10,14 @@ import Comment from "../../components/Comment";
 import { DodamFilledButton } from "@b1nd/dds-web";
 import { B1ndToast } from "@b1nd/b1nd-toastify";
 import { useUserStore } from "../../store/useUserStore";
-import { User } from "../../types/User/user.token";
 
 const BlogDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const blogId = Number(id);
   const deleteBlogMutation = useDeleteBlogMutation();
   const { data, isLoading, isError } = useBlogDetail(blogId);
-  const user = useUserStore((state: { user: User | null }) => state.user);
-  
-  console.log(user);
+  const userRole = useUserStore((state) => state.userRole);
+
   
   const handleShare = async () => {
     try {
@@ -64,15 +62,15 @@ const BlogDetailPage = () => {
           <span>{data.post_author}</span>
           <span>{new Date(data.post_created_at).toLocaleDateString("ko-KR")}</span>
         </S.BlogTitleDetail>
-            {user?.user_role === "ADMIN" && (
+            {userRole === "ADMIN" && (
               <DodamFilledButton
-                width={67}
+                width={120}
                 size="Medium"
-                backgroundColorType="Danger"
+                backgroundColorType="Negative"
                 typography={['Body2', 'Bold']}
                 onClick={handleDelete}
               >
-                삭제
+                블로그 삭제
               </DodamFilledButton>
             )}
         </S.BlogTitle>
@@ -109,7 +107,7 @@ const BlogDetailPage = () => {
                 공유
             </DodamFilledButton>
         </S.BoxHeader>
-      <Comment postId={blogId} canDelete={user?.user_role === 'ADMIN'}/>
+      <Comment postId={blogId} canDelete={userRole=== 'ADMIN'}/>
     </S.BlogDetailBox>
   );
 };

@@ -9,7 +9,7 @@ import ServicePage from './page/service/service'
 import BlogPage from './page/blog/blog'
 import AuthLoadingPage from './page/AuthLoading/AuthLoadingPage'
 import WritePage from './page/Write/write'
-import Admin from './page/Admin/admin'
+import Admin from './page/Admin/page'
 import BlogDetailPage from './page/BlogDetail/page'
 
 const Rotuer = () => {

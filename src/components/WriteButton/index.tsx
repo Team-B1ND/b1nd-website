@@ -21,11 +21,12 @@ const WriteButton = () => {
     }
 
     try {
-      const { accessToken: newAccessToken } = await AuthRepositoryImpl.refresh({
+      const { data } = await AuthRepositoryImpl.refresh({
         refreshToken,
       });
-      Token.setToken(ACCESS_TOKEN_KEY, newAccessToken);
-
+      
+      Token.setToken(ACCESS_TOKEN_KEY, data.accessToken);
+      
       window.location.href = "write";
     } catch (error) {
       Token.clearToken();

@@ -140,6 +140,7 @@ export const useWrite = () => {
           "게시글이 성공적으로 출간되었습니다.",
           "어드민에서 승인 후 반영됩니다."
         );
+        window.location.href = "/blog";
       },
     });
   };

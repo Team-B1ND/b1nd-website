@@ -12,7 +12,7 @@ const CommentItem = ({ authorName, content,onDelete }: CommentItemProps) => {
       <CommentItemBox>
          {onDelete && (
         <DeleteButton onClick={onDelete}>
-          <XmarkCircle size={16} />
+          <XmarkCircle size={16} color="statusNegative"/>
         </DeleteButton>
       )}
         <CommentAuthor>{authorName}</CommentAuthor>

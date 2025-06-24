@@ -2,14 +2,14 @@ import {
   BlogBox,
   BlogContentBox,
   BlogContentContainer,
-  BlogSerach,
-  BlogSerachIcon,
-  BlogSerachInput,
+  // BlogSerach,
+  // BlogSerachIcon,
+  // BlogSerachInput,
   PagiNation,
   ToastText,
 } from './style';
 import { Title } from '../style';
-import { DodamErrorBoundary, Magnifyingglass } from '@b1nd/dds-web';
+import { DodamErrorBoundary } from '@b1nd/dds-web';
 import BlogItem from '../../components/Blogitem';
 import WriteButton from '../../components/WriteButton';
 import { useState } from 'react';

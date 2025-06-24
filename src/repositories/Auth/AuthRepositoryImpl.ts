@@ -1,6 +1,7 @@
 import axios from "axios";
 import { TokenResponse } from "../../types/Token/token.types";
 import { LoginParam } from "./AuthParmas";
+import { NewAccessTokenResponse } from "../../types/Auth/auth.type";
 
 const SERVER = process.env.REACT_APP_SERVER_URL!;
 
@@ -10,8 +11,8 @@ class AuthRepositoryImpl {
     return data;
   }
 
-  public async refresh({ refreshToken }: { refreshToken: string }): Promise<{ accessToken: string }> {
-    const { data } = await axios.post(`${SERVER}/auth/refresh`, {
+  public async refresh({ refreshToken }: { refreshToken: string }): Promise<NewAccessTokenResponse> {
+    const { data } = await axios.post<NewAccessTokenResponse>(`${SERVER}/auth/refresh`, {
       refreshToken,
     });
     return data;

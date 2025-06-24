@@ -42,25 +42,32 @@ const errorResponseHandler = async (error: AxiosError) => {
       if (!isRefreshing) {
         //리프레쉬 작업을 시작함
         isRefreshing = true;
-
+        alert("세션이 갱신되었습니다.111");
         //리프레쉬 api 요청
         try {
-          const {  accessToken } =
+
+          alert("세션이 갱신되었습니다.2222");
+          const {  data } =
             await authRepository.refresh({
             refreshToken: usingRefreshToken!,
           });
+          alert("세션이 갱신되었습니다.");
+          console.log("새로운 accessToken:", data.accessToken);
+          
+          
 
           b1ndAxios.defaults.headers.common[
             REQUEST_TOKEN_KEY
-          ] = `Bearer ${accessToken}`;
+          ] = `Bearer ${data.accessToken}`;
 
-          token.setToken(ACCESS_TOKEN_KEY, accessToken);
+          token.setToken(ACCESS_TOKEN_KEY, data.accessToken);
+          
 
           //리프레쉬 작업을 마침
           isRefreshing = false;
 
           //새로 받은 accessToken을 기반으로 이때까지 밀려있던 요청을 모두 처리
-          onTokenRefreshed(accessToken);
+          onTokenRefreshed(data.accessToken);
         } catch (error) {
           //리프레쉬 하다가 오류난거면 리프레쉬도 만료된 것이므로 다시 로그인
           window.alert("세션이 만료되었습니다.");

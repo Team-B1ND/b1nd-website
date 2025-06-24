@@ -6,6 +6,7 @@ import { DodamFilledButton } from '@b1nd/dds-web';
 import CommentItem from './CommentItem';
 import { useCommentQuery, useCommentMutation, useDeleteCommentMutation } from '../../queries/Comment/comment.query';
 import { B1ndToast } from '@b1nd/b1nd-toastify';
+import { QueryClient, useQueryClient } from 'react-query';
 
 interface CommentProps {
   postId: number;
@@ -18,6 +19,7 @@ const Comment = ({ postId,canDelete = false  }: CommentProps) => {
   const deleteMutation = useDeleteCommentMutation();
   const { data, refetch } = useCommentQuery(postId);
   const mutation = useCommentMutation();
+  const queryClient = useQueryClient();
 
   const handleChangeRandomName = (newName: string) => {
     setAuthorName(newName);
@@ -45,6 +47,7 @@ const Comment = ({ postId,canDelete = false  }: CommentProps) => {
     deleteMutation.mutate(commentId, {
       onSuccess: () => {
         B1ndToast.showSuccess("댓글이 삭제되었습니다.");
+        queryClient.invalidateQueries(['comments', postId]);
         refetch();
       },
       onError: () => {

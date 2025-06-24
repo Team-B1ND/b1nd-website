@@ -9,9 +9,8 @@ import BottomBar from "../../components/Wirte/BottomBar";
 import Poster from "../../components/Wirte/Poster";
 import { useWrite } from "../../hooks/Write/useWrite";
 import remarkBreaks from "remark-breaks"; 
-import { useUserStore } from "../../store/useUserStore";
-import { useEffect } from "react";
-import { useUserQuery } from "../../queries/User/user.query";
+
+
 
 const WritePage = () => {
   const {
@@ -30,15 +29,6 @@ const WritePage = () => {
     handleUploadImageAndInsertMarkdown
   } = useWrite();
 
-  const { data } = useUserQuery();
-  const setUser = useUserStore((state) => state.setUser);
-  console.log(data);
-  
-  useEffect(() => {
-    if (data) {
-      setUser(data); 
-    }
-  }, [data]);
   
   return (
     <S.WriteBox>
