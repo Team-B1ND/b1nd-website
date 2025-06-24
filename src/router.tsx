@@ -11,7 +11,7 @@ import AuthLoadingPage from './page/AuthLoading/AuthLoadingPage'
 import WritePage from './page/Write/write'
 import Admin from './page/Admin/page'
 import BlogDetailPage from './page/BlogDetail/page'
-
+import { DodamNotFoundPage } from '@b1nd/dds-web'
 const Rotuer = () => {
   return (
     <>
@@ -26,6 +26,8 @@ const Rotuer = () => {
           <Route path='/admin' element={<Admin />}/>
         </Route>
         <Route path="/callback" element={<AuthLoadingPage />} />
+
+        <Route path="/*" element={<DodamNotFoundPage />} />
         </Switch>
       
       </>
