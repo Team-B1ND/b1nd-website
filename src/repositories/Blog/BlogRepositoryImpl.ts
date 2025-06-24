@@ -36,7 +36,10 @@ class BlogRepositoryImpl {
   public async rejectBlog(id: number): Promise<void> {
     await b1ndAxios.patch(`/post/reject/${id}`);
   }
-
+  
+  public async deleteBlog(id: number): Promise<void> {
+    await b1ndAxios.delete(`/post/${id}`);
+  }
 }
 
 export default new BlogRepositoryImpl();

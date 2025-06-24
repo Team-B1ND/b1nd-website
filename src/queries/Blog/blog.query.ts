@@ -56,3 +56,9 @@ export const useRejectBlogMutation = () => {
     );
     return mutation;
 }
+
+export const useDeleteBlogMutation = () => {
+  return useMutation((post_id: number) =>
+    BlogRepository.deleteBlog(post_id)
+  );
+};

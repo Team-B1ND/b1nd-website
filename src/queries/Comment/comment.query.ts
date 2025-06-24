@@ -19,3 +19,10 @@ export const useCommentMutation = () => {
   );
   return mutation;
 };
+
+export const useDeleteCommentMutation = () => {
+  const mutation = useMutation((commentId: number) =>
+    CommentRepository.deleteComment(commentId)
+  );
+  return mutation;
+};

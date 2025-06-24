@@ -5,23 +5,50 @@ import remarkGfm from "remark-gfm";
 import rehypePrism from "rehype-prism";
 import "../../styles/prism-theme.css"; 
 import "../../constants/Prism/prism.constants"; 
-import { useBlogDetail } from "../../queries/Blog/blog.query";
+import { useBlogDetail, useDeleteBlogMutation } from "../../queries/Blog/blog.query";
 import Comment from "../../components/Comment";
 import { DodamFilledButton } from "@b1nd/dds-web";
 import { B1ndToast } from "@b1nd/b1nd-toastify";
+import { useUserStore } from "../../store/useUserStore";
+import { User } from "../../types/User/user.token";
 
 const BlogDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const blogId = Number(id);
-
+  const deleteBlogMutation = useDeleteBlogMutation();
   const { data, isLoading, isError } = useBlogDetail(blogId);
-
+  const user = useUserStore((state: { user: User | null }) => state.user);
+  
+  console.log(user);
+  
   const handleShare = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
       B1ndToast.showSuccess("주소가 복사되었습니다!");    
     } catch (err) {
       B1ndToast.showError("주소 복사에 실패했습니다.");
+    }
+  };
+
+
+  const handleDelete = async () => {
+    
+    try {
+      deleteBlogMutation.mutate(blogId
+        , {
+        onSuccess: () => {
+          B1ndToast.showSuccess("블로그가 삭제되었습니다.");
+          window.location.href = "/blog";
+        },
+        onError: () => {
+          B1ndToast.showError("블로그 삭제에 실패했습니다.");
+        },
+      }
+      );
+      B1ndToast.showSuccess("삭제가 완료되었습니다.");
+      window.location.href = "/blog";
+    } catch (err) {
+      B1ndToast.showError("삭제에 실패했습니다.");
     }
   };
 
@@ -37,6 +64,17 @@ const BlogDetailPage = () => {
           <span>{data.post_author}</span>
           <span>{new Date(data.post_created_at).toLocaleDateString("ko-KR")}</span>
         </S.BlogTitleDetail>
+            {user?.user_role === "ADMIN" && (
+              <DodamFilledButton
+                width={67}
+                size="Medium"
+                backgroundColorType="Danger"
+                typography={['Body2', 'Bold']}
+                onClick={handleDelete}
+              >
+                삭제
+              </DodamFilledButton>
+            )}
         </S.BlogTitle>
         <S.BlogContent>
         <ReactMarkdown
@@ -71,7 +109,7 @@ const BlogDetailPage = () => {
                 공유
             </DodamFilledButton>
         </S.BoxHeader>
-      <Comment postId={blogId}/>
+      <Comment postId={blogId} canDelete={user?.user_role === 'ADMIN'}/>
     </S.BlogDetailBox>
   );
 };
