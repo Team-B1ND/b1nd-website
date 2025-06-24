@@ -20,3 +20,14 @@ export const CommentContent = styled.div`
   color: ${({ theme }) => theme.labelAlternative};
   ${DodamTypography.Body1.Medium};
 `
+
+
+export const DeleteButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 0;
+
+  
+`;

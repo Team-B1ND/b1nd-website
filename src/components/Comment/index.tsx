@@ -4,17 +4,18 @@ import ProfileImage from "../../assets/profile.svg";
 import RandomName from './RandomName';
 import { DodamFilledButton } from '@b1nd/dds-web';
 import CommentItem from './CommentItem';
-import { useCommentQuery, useCommentMutation } from '../../queries/Comment/comment.query';
+import { useCommentQuery, useCommentMutation, useDeleteCommentMutation } from '../../queries/Comment/comment.query';
 import { B1ndToast } from '@b1nd/b1nd-toastify';
 
 interface CommentProps {
   postId: number;
+  canDelete?: boolean;
 }
 
-const Comment = ({ postId }: CommentProps) => {
+const Comment = ({ postId,canDelete = false  }: CommentProps) => {
   const [authorName, setAuthorName] = useState("");
   const [content, setContent] = useState("");
-
+  const deleteMutation = useDeleteCommentMutation();
   const { data, refetch } = useCommentQuery(postId);
   const mutation = useCommentMutation();
 
@@ -37,6 +38,19 @@ const Comment = ({ postId }: CommentProps) => {
         },
       }
     );
+  };
+
+  const handleDelete = (commentId: number) => {
+
+    deleteMutation.mutate(commentId, {
+      onSuccess: () => {
+        B1ndToast.showSuccess("댓글이 삭제되었습니다.");
+        refetch();
+      },
+      onError: () => {
+        B1ndToast.showError("댓글 삭제에 실패했습니다.");
+      },
+    });
   };
 
   return (
@@ -72,6 +86,8 @@ const Comment = ({ postId }: CommentProps) => {
         key={comment.commentId}
         authorName={comment.authorName}
         content={comment.content}
+        onDelete={canDelete ? () => handleDelete(comment.commentId) : undefined}
+
       />
     ))}
       
