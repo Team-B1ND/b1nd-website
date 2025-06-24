@@ -33,6 +33,7 @@ const Comment = ({ postId,canDelete = false  }: CommentProps) => {
       {
         onSuccess: () => {
           setContent("");
+          queryClient.invalidateQueries(['comments', postId]);
           refetch();
         },
         onError: () => {

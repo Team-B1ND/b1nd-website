@@ -12,7 +12,6 @@ export const CommentItemBox = styled.div`
 
 export const CommentAuthor = styled.div`
   display: flex;
-  padding: 10px;
   color: ${({ theme }) => theme.labelNormal};
   ${DodamTypography.Body1.Bold};
 `
