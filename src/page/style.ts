@@ -125,3 +125,121 @@ export const HistoryText = styled.div`
         flex-direction: column;
     }
 `
+
+export const MemberBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+`
+
+export const MemberTitle = styled.h2`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+    font-size: 40px !important;
+    ${DodamTypography.Title1.Bold};
+    color: ${({ theme }) => theme.labelNormal};
+`
+
+export const GenerationContainer = styled.section`
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid ${({ theme }) => theme.borderNormal};
+`
+
+export const GenerationHeader = styled.button<{ $open: boolean }>`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 16px 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: ${({ theme }) => theme.labelNormal};
+    span{
+        ${DodamTypography.Title2.Medium};
+    }
+    svg{
+        transition: transform .2s ease;
+        transform: rotate(${({ $open }) => ($open ? "0deg" : "180deg")});
+        color: ${({ theme }) => theme.labelAssistive};
+    }
+`
+
+export const GenerationContent = styled.div<{ $open: boolean }>`
+    overflow: hidden;
+    max-height: ${({ $open }) => ($open ? "1000px" : "0px")};
+    transition: max-height .3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+`
+
+export const MemberRow = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 2fr auto;
+    align-items: center;
+    padding: 12px 0;
+    border-top: 1px solid ${({ theme }) => theme.borderNormal};
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr; 
+        gap: 8px;
+    }
+`
+
+// 멤버 테이블
+export const MemberTable = styled.table`
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    th{
+        height: 56px;
+        padding: 12px 0;
+        vertical-align: middle;
+        ${DodamTypography.Headline.Bold};
+        color: ${({ theme }) => theme.labelNormal};
+    }
+
+    td {
+        padding: 12px 0;
+        vertical-align: middle;
+        ${DodamTypography.Headline.Medium}; 
+        color: ${({ theme }) => theme.labelNormal};
+    }
+
+    /* 열 너비 설정 */
+    tr > :nth-child(1) { width: 30%; }
+    tr > :nth-child(2) { width: 50%; }
+    tr > :nth-child(3) { width: 20%; }
+
+    .right { text-align: right; }
+
+    /* 기수 헤더 행 */
+    .generation-row { cursor: pointer; }
+    .generation-row th { font-weight: 700;  }
+    .generation-row .arrow { display: inline-flex; transition: transform .2s ease; }
+    .generation-row[data-open="true"] .arrow { transform: rotate(180deg); }
+
+    /* 일반 멤버 행 */
+    tbody tr:not(.generation-row) th:nth-child(1) { font-weight: 700; display:flex; }
+    tbody tr:not(.generation-row) th:nth-child(2) { font-weight: 500; color: ${({ theme }) => theme.labelAssistive}; }
+
+    /* 링크 영역 */
+    .trc-icondefault { display: inline-flex; gap: 12px; }
+    .trc-icondefault a {
+     cursor: pointer;
+    }
+    
+    .trc-name { font-weight: 700; color: ${({ theme }) => theme.labelNormal}; display: flex; align-items: center; justify-content:center;  gap: 4px; }
+    .trc-string { font-weight: 500; color: ${({ theme }) => theme.labelAssistive}; }
+
+    @media (max-width: 767px) {
+        tr > :nth-child(1), tr > :nth-child(2), tr > :nth-child(3) { width: auto; }
+    }
+`

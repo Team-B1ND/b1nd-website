@@ -7,13 +7,31 @@ import {
     HistoryBox, 
     HeaderDate, 
     HistoryItemBox, 
-    HistoryText
- } from "./style";
-import { DodamDivider } from "@b1nd/dds-web";
+    HistoryText,
+    MemberBox,
+    MemberTitle,
+    MemberTable
+  } from "./style";
+import { ChevronDown, DodamDivider } from "@b1nd/dds-web";
 import {DodamAppLogo, FigmaLogo, GithubLogo} from "../assets";
+import { GENERATIONS } from "../constants/member/member.constants";
 import { HISTORY_ITME } from "../constants/history.constants";
+import { useState } from "react";
+import { Crown } from "../assets/components/crown";
+
+
 
 const Home = () => {
+
+    const [openGenerations, setOpenGenerations] = useState<Set<string>>(new Set());
+
+    const toggleGeneration = (id: string) => {
+        setOpenGenerations(prev => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id); else next.add(id);
+            return next;
+        });
+    };
 
     return(
         <IntroductionBox>
@@ -59,7 +77,7 @@ const Home = () => {
                     </span>
                 </HeadlineContent>
                 <div style={{display:"flex", gap:"10px"}}>
-                <GithubLogo />
+                <GithubLogo size={80}/>
                 <FigmaLogo />
                 </div>
                </HeadlineFlexBox>
@@ -80,6 +98,64 @@ const Home = () => {
                 </HistoryItemBox>
                 ))}
             </HistoryBox>
+            <DodamDivider type="Small"/>
+            <MemberBox>
+                <MemberTitle>
+                    <b>B1ND MEMBER</b>
+                    
+                </MemberTitle>
+                <MemberTable>
+                    <tbody>
+                        {GENERATIONS.map((g) => {
+                            const isOpen = openGenerations.has(g.id);
+                        
+
+                            return (
+                                <>
+                                    <tr key={g.id}  onClick={() => toggleGeneration(g.id)}>
+                                        <th scope="row">{g.label}</th>
+                                        <th scope="row"></th>
+                                        <th scope="row" className="right">
+                                            <span style={{ display: "inline-flex", transition: "transform .2s ease", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",cursor: "pointer" }}>
+                                                <ChevronDown size={24} color="labelNormal"/>
+                                            </span>
+                                        </th>
+                                    </tr>
+                                    {isOpen && g.members.map((m) => (
+                                        <tr key={`${g.id}-${m.name}`}>
+                                            <th scope="row">
+                                                <div className="trc-name">{m.name} {m.leader ? <Crown color="primaryNormal" /> : ""}</div>
+                                            </th>
+                                            <th scope="row">
+                                                <div className="trc-string"> {m.role}</div>
+                                            </th>
+                                            <th scope="row" className="right">
+                                                <div className="trc-icondefault">
+                                                {m.links.map((l) => {
+                                                
+                                                    return (
+                                                        <a
+                                                        key={l.label}
+                                                        href={l.url}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        >
+                                                         {l.icon && (
+                                                                <l.icon/>
+                                                            )}
+                                                        </a>
+                                                    );
+                                                    })}
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    ))}
+                                </>
+                            );
+                        })}
+                    </tbody>
+                </MemberTable>
+            </MemberBox>
         </IntroductionBox>
     )
 }
