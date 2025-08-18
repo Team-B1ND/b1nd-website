@@ -10,7 +10,7 @@ const ThemeProviderContainer = ({ children }: Props) => {
 
   
   return (
-    <DodamThemeProvider theme={isDarkMode ? "DARK" :"LIGHT"}>
+    <DodamThemeProvider theme={isDarkMode ? "DARK" : "LIGHT" }>
       <DodamGlobalStyles />
       {children}
     </DodamThemeProvider>

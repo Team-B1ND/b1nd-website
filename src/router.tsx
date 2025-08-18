@@ -1,5 +1,4 @@
 import {
-  HashRouter,
   Route,
   Routes as Switch,
 } from 'react-router-dom'

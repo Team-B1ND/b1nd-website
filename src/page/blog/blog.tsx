@@ -2,9 +2,6 @@ import {
   BlogBox,
   BlogContentBox,
   BlogContentContainer,
-  // BlogSerach,
-  // BlogSerachIcon,
-  // BlogSerachInput,
   PagiNation,
   ToastText,
 } from './style';

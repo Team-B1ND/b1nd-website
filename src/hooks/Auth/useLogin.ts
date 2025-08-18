@@ -37,7 +37,7 @@ const useLogin = () => {
 
   useEffect(() => {
     login();
-  }, []);
+  }, );
 
   return {};
 };

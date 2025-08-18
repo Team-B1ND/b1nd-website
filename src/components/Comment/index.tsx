@@ -6,7 +6,7 @@ import { DodamFilledButton } from '@b1nd/dds-web';
 import CommentItem from './CommentItem';
 import { useCommentQuery, useCommentMutation, useDeleteCommentMutation } from '../../queries/Comment/comment.query';
 import { B1ndToast } from '@b1nd/b1nd-toastify';
-import { QueryClient, useQueryClient } from 'react-query';
+import { useQueryClient } from 'react-query';
 
 interface CommentProps {
   postId: number;
