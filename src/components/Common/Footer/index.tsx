@@ -13,7 +13,6 @@ const Footer = () => {
                     <span>B1ND(바인드)</span>
                     <span>대구소프트웨어마이스터고등학교</span>
                     <span>이메일 : mdev_team@dgsw.hs.kr</span>
-                    <span>v2</span>
                 </TeamInfo>
                 <FooterLinkBox>
                     <FooterItem>
