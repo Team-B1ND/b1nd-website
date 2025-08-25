@@ -28,6 +28,7 @@ const AdminItem = ({ data }: { data: Blog }) => {
         rejectBlogMutation.mutate(data.post_id, {
             onSuccess: () => {
                 B1ndToast.showSuccess("블로그 글이 거절되었습니다.")
+                queryClient.invalidateQueries("blogs/waiting");
             },
             onError: (error:any) => {
                 B1ndToast.showError(`블로그 글 거절에 실패했습니다: ${error.message}`);

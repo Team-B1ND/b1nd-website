@@ -37,6 +37,15 @@ export const Left = styled.div`
   }
 `;
 
+export const StickyHeader = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: ${({theme})=>theme.backgroundNormal};
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+`;
+
 export const Right = styled.div`
   flex: 1;
   padding: 2rem;
@@ -64,6 +73,10 @@ export const Right = styled.div`
     ${DodamTypography.Body2.Regular};
     color: ${({ theme }) => theme.labelStrong}; 
     font-family: 'Fira Code', 'Source Code Pro', monospace;
+  }
+  p, li {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
   a {

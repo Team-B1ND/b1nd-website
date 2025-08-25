@@ -10,6 +10,8 @@ export const useWrite = () => {
   const [title, setTitle] = useState("");
   const [markdown, setMarkdown] = useState("");
   const [isPosterPhase, setIsPosterPhase] = useState(false);
+  const [posterSummary, setPosterSummary] = useState("");
+  const [posterImageUrl, setPosterImageUrl] = useState<string | null>(null);
   
   const handleInsert = (text: string) => {
     const textarea = document.getElementById(
@@ -30,12 +32,19 @@ export const useWrite = () => {
     }, 0);
   };
 
-  const handleUploadImageAndInsertMarkdown = async (file: File) => {
+  const handleUploadImageAndInsertMarkdown = async (
+    file: File,
+    insertPosition?: number
+  ) => {
     
     const tempId = `![Uploading ${file.name} ${Date.now()}]()`;
     
     
-    handleInsert(tempId);
+    if (typeof insertPosition === "number") {
+      setMarkdown(prev => prev.slice(0, insertPosition) + tempId + prev.slice(insertPosition));
+    } else {
+      handleInsert(tempId);
+    }
     setIsUploading(true);
 
     try {
@@ -44,9 +53,7 @@ export const useWrite = () => {
       const completedMarkdown = `![${response.filename}](${realUrl})`;
 
       
-      setMarkdown(currentMarkdown =>
-        currentMarkdown.replace(tempId, completedMarkdown)
-      );
+      setMarkdown(currentMarkdown => currentMarkdown.replace(tempId, completedMarkdown));
 
     } catch (error) {
       console.error("Image upload failed:", error);
@@ -56,6 +63,48 @@ export const useWrite = () => {
     } finally {
       setIsUploading(false);
     }
+  };
+
+  const handleDropOnEditor = async (
+    e: React.DragEvent<HTMLTextAreaElement>
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const items = e.dataTransfer?.items;
+    const files: File[] = [];
+    if (items && items.length > 0) {
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        if (item.kind === "file") {
+          const file = item.getAsFile();
+          if (file) files.push(file);
+        }
+      }
+    } else if (e.dataTransfer?.files && e.dataTransfer.files.length > 0) {
+      for (let i = 0; i < e.dataTransfer.files.length; i++) {
+        files.push(e.dataTransfer.files[i]);
+      }
+    }
+    if (files.length === 0) return;
+    // 드롭 위치의 커서 기준으로 순서대로 삽입
+    const startPos = e.currentTarget.selectionStart ?? undefined;
+    let cursor = typeof startPos === "number" ? startPos : undefined;
+    for (const file of files) {
+      const tempId = `![Uploading ${file.name} ${Date.now()}]()`;
+      if (typeof cursor === "number") {
+        // 미리 tempId 길이를 고려해 다음 삽입 위치를 이동
+        await handleUploadImageAndInsertMarkdown(file, cursor);
+        cursor += tempId.length;
+      } else {
+        await handleUploadImageAndInsertMarkdown(file);
+      }
+    }
+  };
+
+  const handleDragOverOnEditor = (
+    e: React.DragEvent<HTMLTextAreaElement>
+  ) => {
+    e.preventDefault();
   };
 
   
@@ -181,5 +230,11 @@ export const useWrite = () => {
     isLoading: postBlogMutation.isLoading || uploadMutation.isLoading,
     handleUploadImageAndInsertMarkdown,
     isUploading,
+    posterSummary,
+    setPosterSummary,
+    posterImageUrl,
+    setPosterImageUrl,
+    handleDropOnEditor,
+    handleDragOverOnEditor,
   };
 };

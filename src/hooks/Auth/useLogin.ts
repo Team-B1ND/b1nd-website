@@ -1,5 +1,5 @@
 import { B1ndToast } from "@b1nd/b1nd-toastify";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   ACCESS_TOKEN_KEY,
@@ -13,12 +13,11 @@ const useLogin = () => {
   const { search } = useLocation();
   const navigate = useNavigate();
   const postLoginMutation = usePostLoginMutation();
+  const hasCalledRef = useRef(false);
 
-  const login = () => {
+  const login = (code: string) => {
     postLoginMutation.mutateAsync(
-      {
-        code: queryString(search).code,
-      },
+      { code },
       {
         onSuccess: ({ data }) => {
           token.setToken(ACCESS_TOKEN_KEY, data.accessToken);
@@ -36,8 +35,15 @@ const useLogin = () => {
   };
 
   useEffect(() => {
-    login();
-  }, );
+    const code = queryString(search).code;
+    if (!code) {
+      navigate("/blog");
+      return;
+    }
+    if (hasCalledRef.current) return;
+    hasCalledRef.current = true;
+    login(code);
+  }, [search, navigate]);
 
   return {};
 };

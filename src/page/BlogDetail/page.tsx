@@ -36,7 +36,7 @@ const BlogDetailPage = () => {
         , {
         onSuccess: () => {
           B1ndToast.showSuccess("블로그가 삭제되었습니다.");
-          window.location.href = "/blog";
+          window.location.href = "/admin";
         },
         onError: () => {
           B1ndToast.showError("블로그 삭제에 실패했습니다.");

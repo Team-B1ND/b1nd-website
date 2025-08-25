@@ -26,7 +26,13 @@ const WritePage = () => {
     isPosterPhase,
     setIsPosterPhase,
     handleSubmitPoster,
-    handleUploadImageAndInsertMarkdown
+    handleUploadImageAndInsertMarkdown,
+    posterSummary,
+    setPosterSummary,
+    posterImageUrl,
+    setPosterImageUrl,
+    handleDropOnEditor,
+    handleDragOverOnEditor,
   } = useWrite();
 
   
@@ -35,27 +41,35 @@ const WritePage = () => {
       {isPosterPhase ? (
         <Poster
           title={title}
+          summary={posterSummary}
+          imageUrl={posterImageUrl}
+          onChangeSummary={setPosterSummary}
+          onChangeImageUrl={setPosterImageUrl}
           onSubmit={handleSubmitPoster}
           onBack={() => setIsPosterPhase(false)}
         />
       ) : (
         <S.WriteInputBox>
           <S.Left>
-            <S.TitleInput
-              placeholder="제목을 입력해주세요"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <MarkdownToolbar 
-              onInsert={handleInsert} 
-              onImageUpload={handleUploadImageAndInsertMarkdown} 
-            />
+            <S.StickyHeader>
+              <S.TitleInput
+                placeholder="제목을 입력해주세요"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <MarkdownToolbar 
+                onInsert={handleInsert} 
+                onImageUpload={handleUploadImageAndInsertMarkdown} 
+              />
+            </S.StickyHeader>
             <S.TextArea
                 id="markdown-input"
                 placeholder="당신의 개발 이야기를 담아주세요"
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
                 onKeyDown={handleKeyDown}
+                onDrop={handleDropOnEditor}
+                onDragOver={handleDragOverOnEditor}
             />
           </S.Left>
           <S.Right>
