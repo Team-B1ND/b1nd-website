@@ -22,7 +22,6 @@ const Header = () => {
 
   const handleNavigation = (link: string) => {
     navigate(link);
-    setMenuVisible(false); 
   };
 
   return (
