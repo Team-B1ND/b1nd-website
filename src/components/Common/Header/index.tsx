@@ -8,16 +8,22 @@ import {
 } from './style'
 import { Close, Menu } from '@b1nd/dds-web'
 import { DodamLogo } from '../../../assets'
-import { useLocation } from 'react-router-dom'
-import { handleRouter } from '../../../utils/useNavigation'
+import { useLocation, useNavigate } from 'react-router-dom'
+
 
 const Header = () => {
   const [menuVisible, setMenuVisible] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuVisible((prevState) => !prevState)
   }
+
+  const handleNavigation = (link: string) => {
+    navigate(link);
+    setMenuVisible(false); 
+  };
 
   return (
     <HeaderContainer>
@@ -37,21 +43,21 @@ const Header = () => {
           <NavItem
             menuVisible={menuVisible}
             $isAtv={location.pathname === '/'}
-            onClick={() => handleRouter('/')}
+            onClick={() => handleNavigation('/')}
           >
             팀소개
           </NavItem>
           <NavItem
             menuVisible={menuVisible}
             $isAtv={location.pathname === '/service'}
-            onClick={() => handleRouter('/service')}
+            onClick={() => handleNavigation('/service')}
           >
             서비스
           </NavItem>
           <NavItem
             menuVisible={menuVisible}
             $isAtv={location.pathname === '/blog'}
-            onClick={() => handleRouter('/blog')}
+            onClick={() => handleNavigation('/blog')}
           >
             블로그
           </NavItem>

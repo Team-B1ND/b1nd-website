@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <title>Single Page Apps for GitHub Pages</title>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
     <script type="text/javascript">
-      var segmentCount = 1;
+      // GitHub Pages repository 이름으로 변경해주세요! 예: "b1nd-website"
+      var repositoryName = "b1nd-website"; 
+      
+      // If a user is not on a custom domain, then the URL path will be like
+      // "http://username.github.io/repositoryName/some/path"
+      // If a user is on a custom domain, then the URL path will be like
+      // "http://custom-domain.com/some/path"
+      // In the custom domain case, the repositoryName should not be part of the URL.
+      // So, if we are not dealing with a custom domain, we will append repositoryName.
+      var path = location.pathname;
+      
+      // Check if the current hostname is a GitHub Pages default domain
+      // and if the repository name is expected in the path.
+      // For user/org pages (username.github.io), repositoryName will be empty.
+      // For project pages (username.github.io/repositoryName), repositoryName will be present.
+      if (location.hostname.endsWith('github.io') && repositoryName.length > 0 && path.startsWith('/' + repositoryName)) {
+        // For project pages, we need to strip the repositoryName from the path
+        // so that React Router sees the correct root path (e.g., /some/path instead of /repositoryName/some/path)
+        path = path.substring(repositoryName.length + 1);
+      }
 
-      var l = window.location;
-      l.replace(
-        l.protocol +
-          "//" +
-          l.hostname +
-          (l.port ? ":" + l.port : "") +
-          l.pathname
-            .split("/")
-            .slice(0, 1 + segmentCount)
-            .join("/") +
-          "/?p=/" +
-          l.pathname
-            .slice(1)
-            .split("/")
-            .slice(segmentCount)
-            .join("/")
-            .replace(/&/g, "~and~") +
-          (l.search ? "&q=" + l.search.slice(1).replace(/&/g, "~and~") : "") +
-          l.hash
-      );
+      // Check for an existing hash to prevent infinite loops if the redirect
+      // itself introduces a hash that matches the current hash logic.
+      if (location.hash === '#/') {
+        // This is a common case when the `homepage` in package.json
+        // results in `PUBLIC_URL` ending with a hash fragment that causes
+        // an undesirable infinite redirect loop.
+        // If this exact hash fragment exists, we prevent further redirection.
+        // You might need to adjust this condition based on your specific setup.
+        // For example, if you explicitly want to use hash routing for a fallback.
+      } else {
+        // Redirect to a URL that BrowserRouter can handle.
+        // The /? prefix allows BrowserRouter to recognize the path
+        // while the server still correctly serves index.html for 404s.
+        // The hash part is added to make sure it functions correctly for direct access
+        // while also handling client-side routing.
+        window.location.replace(
+          location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + 
+          (repositoryName.length > 0 ? '/' + repositoryName : '') + // Add repository name back for github.io path
+          '/?' + path.slice(1) + location.search + location.hash
+        );
+      }
     </script>
   </head>
-  <body></body>
+  <body>
+    <p>If you are not redirected automatically, follow this <a href="/">link</a>.</p>
+  </body>
 </html>
