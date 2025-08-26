@@ -2,6 +2,87 @@ import { Member } from "./member.constants";
 import { GithubLogo, Linkedin, Blog, IoIosRocket, UserCircle } from "../../assets";
 
 export const MEMBERS_BY_GENERATION: Record<string, Member[]> = {
+  "9": [
+    {
+      name: "이건희",
+      role: "Android Developer",
+      links: [
+        { label: "Github", url: "https://github.com/tumblecat44", icon: GithubLogo },
+      ]
+    },
+    {
+      name: "신지윤",
+      role: "iOS Developer",
+      links: [
+        { label: "Github", url: "https://github.com/jiyun0220", icon: GithubLogo },
+        { label: "LinkedIn", url: "https://www.linkedin.com/in/jiyun0220/", icon: Linkedin }
+      ]
+    },
+    {
+      name: "김민규",
+      role: "Back-end Developer",
+      leader: true, 
+      links: [
+        { label: "Github", url: "https://github.com/daedyu", icon: GithubLogo },
+        { label: "Website", url: "https://bento.me/trillionon2033", icon: null},
+      ]
+    },
+    {
+      name: "박민규",
+      role: "Back-end Developer",
+      links: [
+        { label: "Github", url: "https://github.com/bestdevmgp", icon: GithubLogo },
+        { label: "Website", url: "https://mingyu.dev/", icon: null},
+        { label: "LinkedIn", url: "https://www.linkedin.com/in/bestdevmgp/", icon: Linkedin}
+      ]
+    },
+    {
+      name: "김은찬",
+      role: "iOS Developer",
+      links: [
+        { label: "Github", url: "https://github.com/eunchan2815", icon: GithubLogo },
+        { label: "Blog", url: "https://velog.io/@eunchan/posts", icon: Blog},
+      ]
+    },
+    {
+      name: "김하나",
+      role: "Front-end Developer",
+      links: [
+        { label: "Github", url: "https://github.com/dlskl", icon: GithubLogo },
+        { label: "LinkedIn", url: "https://www.linkedin.com/feed/", icon: Linkedin},
+      ]
+    },
+    {
+      name: "여승원",
+      role: "Front-end Developer",
+      links: [
+        { label: "Github", url: "https://github.com/yejub", icon: GithubLogo },
+      ]
+    },
+    {
+      name: "박재민",
+      role: "Front-end Developer",
+      links: [
+        { label: "Github", url: "https://github.com/Cartridge9", icon: GithubLogo },
+      ]
+    },
+    {
+      name: "박재민",
+      role: "Front-end Developer",
+      links: [
+        { label: "Github", url: "https://github.com/Cartridge9", icon: GithubLogo },
+        { label: "LinkedIn", url: "https://www.linkedin.com/in/park-jaemin-a3b499380/", icon: Linkedin}
+      ]
+    },
+    {
+      name: "김민재",
+      role: "Android Developer",
+      links: [
+        { label: "Github", url: "https://github.com/kmj5004", icon: GithubLogo },
+        
+      ]
+    }
+  ],
     "8": [
       {
         name: "김가영",
