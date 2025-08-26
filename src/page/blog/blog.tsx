@@ -2,19 +2,34 @@ import {
   BlogBox,
   BlogContentBox,
   BlogContentContainer,
+  BlogSerach,
+  BlogSerachIcon,
+  BlogSerachInput,
   PagiNation,
   ToastText,
 } from './style';
 import { Title } from '../style';
-import { DodamErrorBoundary } from '@b1nd/dds-web';
+import { DodamErrorBoundary, Magnifyingglass } from '@b1nd/dds-web';
 import BlogItem from '../../components/Blogitem';
 import WriteButton from '../../components/WriteButton';
 import { useState } from 'react';
-import { useBlogsList } from '../../queries/Blog/blog.query';
+import { useBlogsList, useBlogSearch } from '../../queries/Blog/blog.query';
 
 const Blog = () => {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isFetching } = useBlogsList({ page });
+  const [keyword, setKeyword] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState('');
+
+  const { data: blogsData, isLoading: blogsLoading, isFetching: blogsFetching } = useBlogsList({ page });
+  const { data: searchData, isLoading: searchLoading, isFetching: searchFetching } = useBlogSearch({ 
+    keyword: searchKeyword, 
+    page 
+  });
+
+  // 검색 결과가 있으면 검색 데이터를, 없으면 일반 블로그 데이터를 사용
+  const data = searchKeyword ? searchData : blogsData;
+  const isLoading = searchKeyword ? searchLoading : blogsLoading;
+  const isFetching = searchKeyword ? searchFetching : blogsFetching;
 
   const totalPages = data?.totalPage || 1;
 
@@ -26,6 +41,25 @@ const Blog = () => {
     if (page < totalPages) setPage(prev => prev + 1);
   };
 
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setSearchKeyword(keyword);
+      setPage(1);
+    }
+  };
+
+  const handleSearchClick = () => {
+    setSearchKeyword(keyword);
+    setPage(1);
+  };
+
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
+    if (e.target.value === '') {
+      setSearchKeyword('');
+      setPage(1);
+    }
+  };
 
   return (
     <BlogBox>
@@ -44,24 +78,29 @@ const Blog = () => {
 
       <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <BlogContentContainer>
-          {/* <BlogSerach>
-            <BlogSerachIcon>
+          <BlogSerach>
+            <BlogSerachIcon onClick={handleSearchClick}>
               <Magnifyingglass color='labelAlternative' />
             </BlogSerachIcon>
-            <BlogSerachInput placeholder='검색' />
-          </BlogSerach> */}
+            <BlogSerachInput 
+              placeholder='검색' 
+              value={keyword}
+              onChange={handleSearchInputChange}
+              onKeyDown={handleSearch}
+            />
+          </BlogSerach>
 
           <BlogContentBox>
             <DodamErrorBoundary text="에러발생" showButton={true}>
             {isLoading || isFetching ? (
               <ToastText>로딩중..</ToastText>
-            ) : data?.data.length === 0 ? (
+            ) : !data || data.data.length === 0 ? (
               <ToastText>
-                게시글이 없습니다.
+                {searchKeyword ? '검색 결과가 없습니다.' : '게시글이 없습니다.'}
               </ToastText>
             ) : (
               <>
-                {data?.data.map((item, index) => (
+                {data.data.map((item, index) => (
                   <BlogItem key={index} data={item} />
                 ))}
               </>

@@ -77,6 +77,7 @@ export const PagiNation = styled.div`
   margin-top: 2rem;
 
   button{
+    cursor: pointer;
     padding: 10px 20px;
     border: none;
     background-color: ${({ theme }) => theme.fillNormal};
@@ -98,4 +99,5 @@ export const ToastText = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.labelNormal};
   ${DodamTypography.Title2.Bold}
+  grid-column: 1 / -1; 
 `
