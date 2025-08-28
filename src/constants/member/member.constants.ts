@@ -22,6 +22,7 @@ export type Generation = {
 };
 
 export const GENERATIONS: Generation[] = [
+    { id: "9", label: "9기", members: MEMBERS_BY_GENERATION["9"] ?? [] },
     { id: "8", label: "8기", members: MEMBERS_BY_GENERATION["8"] ?? [] },
     { id: "7", label: "7기", members: MEMBERS_BY_GENERATION["7"] ?? [] },
     { id: "6", label: "6기", members: MEMBERS_BY_GENERATION["6"] ?? [] },
